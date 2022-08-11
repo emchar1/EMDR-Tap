@@ -159,46 +159,5 @@ extension TapManager {
     
     func durationChanged(_ control: UISegmentedControl) {
         setFirebaseModelIfHost()
-            
-//            DataService.docRef.setData(["duration" : settingsView.getDuration()])
-        
-            
-//        let ref = DataService.docRef
-//
-//        ref.firestore.runTransaction({ (transaction, errorPointer) -> Any? in
-//            let doc: DocumentSnapshot
-//
-//            do {
-//                try doc = transaction.getDocument(ref)
-//            } catch let fetchError as NSError {
-//                errorPointer?.pointee = fetchError
-//                return nil
-//            }
-//
-//            guard let oldPopulation = doc.data()?["duration"] as? TimeInterval? else {
-//                let error = NSError(
-//                    domain: "AppErrorDomain",
-//                    code: -1,
-//                    userInfo: [NSLocalizedDescriptionKey: "Unable to retrieve population from snapshot \(doc)"]
-//                )
-//                errorPointer?.pointee = error
-//                return nil
-//            }
-//
-//            // Note: this could be done without a transaction
-//            //       by updating the population using FieldValue.increment()
-//            transaction.updateData(["duration": oldPopulation], forDocument: ref)
-//            return nil
-//        }) { (object, error) in
-//            if let error = error {
-//                print("Transaction failed: \(error)")
-//            } else {
-//                print("Transaction successfully committed!")
-//            }
-//        }
-
-        
-        
-        
     }
 }

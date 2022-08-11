@@ -154,7 +154,6 @@ extension TapManager {
             ballView.startPlaying(speed: TimeInterval(settingsView.getSpeed()), restart: false)
         }
         
-        print("speed")
         setFirebaseModelIfHost()
     }
     

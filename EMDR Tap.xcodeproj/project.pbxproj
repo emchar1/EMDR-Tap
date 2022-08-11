@@ -1,0 +1,485 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		31F144D3713625CD87DE6C70 /* Pods_EMDR_Tap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 895844128D9628038E8C549D /* Pods_EMDR_Tap.framework */; };
+		EA00533228A237CD00A98258 /* MainMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA00533128A237CD00A98258 /* MainMenuController.swift */; };
+		EA00533428A2381500A98258 /* MenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA00533328A2381500A98258 /* MenuButton.swift */; };
+		EA00533628A37D1300A98258 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EA00533528A37D1300A98258 /* GoogleService-Info.plist */; };
+		EA00533828A4702500A98258 /* SessionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA00533728A4702500A98258 /* SessionType.swift */; };
+		EA00533A28A4B1CD00A98258 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA00533928A4B1CD00A98258 /* DataService.swift */; };
+		EA00533C28A4C41400A98258 /* FIRModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA00533B28A4C41400A98258 /* FIRModel.swift */; };
+		EA10BFCD288BA2D60062A5FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA10BFCC288BA2D60062A5FF /* AppDelegate.swift */; };
+		EA10BFCF288BA2D60062A5FF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA10BFCE288BA2D60062A5FF /* SceneDelegate.swift */; };
+		EA10BFD1288BA2D60062A5FF /* EMDRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA10BFD0288BA2D60062A5FF /* EMDRViewController.swift */; };
+		EA10BFD6288BA2D80062A5FF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA10BFD5288BA2D80062A5FF /* Assets.xcassets */; };
+		EA10BFD9288BA2D80062A5FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA10BFD7288BA2D80062A5FF /* LaunchScreen.storyboard */; };
+		EA10BFE5288BA4510062A5FF /* BallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA10BFE4288BA4510062A5FF /* BallView.swift */; };
+		EA10BFE7288BA5190062A5FF /* TapManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA10BFE6288BA5190062A5FF /* TapManager.swift */; };
+		EA10BFE9288C750D0062A5FF /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA10BFE8288C750D0062A5FF /* SettingsView.swift */; };
+		EA10BFEB288C87C30062A5FF /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA10BFEA288C87C30062A5FF /* CustomButton.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		330E792ECF1B15755AA264B6 /* Pods-EMDR Tap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EMDR Tap.debug.xcconfig"; path = "Target Support Files/Pods-EMDR Tap/Pods-EMDR Tap.debug.xcconfig"; sourceTree = "<group>"; };
+		895844128D9628038E8C549D /* Pods_EMDR_Tap.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EMDR_Tap.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D36AB8CC6868B00739480DB0 /* Pods-EMDR Tap.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EMDR Tap.release.xcconfig"; path = "Target Support Files/Pods-EMDR Tap/Pods-EMDR Tap.release.xcconfig"; sourceTree = "<group>"; };
+		EA00533128A237CD00A98258 /* MainMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuController.swift; sourceTree = "<group>"; };
+		EA00533328A2381500A98258 /* MenuButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuButton.swift; sourceTree = "<group>"; };
+		EA00533528A37D1300A98258 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		EA00533728A4702500A98258 /* SessionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionType.swift; sourceTree = "<group>"; };
+		EA00533928A4B1CD00A98258 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
+		EA00533B28A4C41400A98258 /* FIRModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FIRModel.swift; sourceTree = "<group>"; };
+		EA10BFC9288BA2D60062A5FF /* EMDR Tap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EMDR Tap.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA10BFCC288BA2D60062A5FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		EA10BFCE288BA2D60062A5FF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		EA10BFD0288BA2D60062A5FF /* EMDRViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EMDRViewController.swift; sourceTree = "<group>"; };
+		EA10BFD5288BA2D80062A5FF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EA10BFD8288BA2D80062A5FF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		EA10BFDA288BA2D80062A5FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EA10BFE4288BA4510062A5FF /* BallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BallView.swift; sourceTree = "<group>"; };
+		EA10BFE6288BA5190062A5FF /* TapManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapManager.swift; sourceTree = "<group>"; };
+		EA10BFE8288C750D0062A5FF /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		EA10BFEA288C87C30062A5FF /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EA10BFC6288BA2D60062A5FF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				31F144D3713625CD87DE6C70 /* Pods_EMDR_Tap.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0E7E3E2454F9A2F4EA0FC198 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				895844128D9628038E8C549D /* Pods_EMDR_Tap.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		65369FDB07ABE5DBBA7F0B13 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				330E792ECF1B15755AA264B6 /* Pods-EMDR Tap.debug.xcconfig */,
+				D36AB8CC6868B00739480DB0 /* Pods-EMDR Tap.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		EA10BFC0288BA2D60062A5FF = {
+			isa = PBXGroup;
+			children = (
+				EA10BFCB288BA2D60062A5FF /* EMDR Tap */,
+				EA10BFCA288BA2D60062A5FF /* Products */,
+				65369FDB07ABE5DBBA7F0B13 /* Pods */,
+				0E7E3E2454F9A2F4EA0FC198 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		EA10BFCA288BA2D60062A5FF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EA10BFC9288BA2D60062A5FF /* EMDR Tap.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EA10BFCB288BA2D60062A5FF /* EMDR Tap */ = {
+			isa = PBXGroup;
+			children = (
+				EA10BFCC288BA2D60062A5FF /* AppDelegate.swift */,
+				EA10BFCE288BA2D60062A5FF /* SceneDelegate.swift */,
+				EA10BFE0288BA3CB0062A5FF /* Models */,
+				EA10BFE1288BA3D60062A5FF /* Views */,
+				EA10BFE2288BA3DB0062A5FF /* Controllers */,
+				EA10BFD5288BA2D80062A5FF /* Assets.xcassets */,
+				EA10BFD7288BA2D80062A5FF /* LaunchScreen.storyboard */,
+				EA10BFDA288BA2D80062A5FF /* Info.plist */,
+				EA00533528A37D1300A98258 /* GoogleService-Info.plist */,
+			);
+			path = "EMDR Tap";
+			sourceTree = "<group>";
+		};
+		EA10BFE0288BA3CB0062A5FF /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				EA10BFE6288BA5190062A5FF /* TapManager.swift */,
+				EA00533728A4702500A98258 /* SessionType.swift */,
+				EA00533928A4B1CD00A98258 /* DataService.swift */,
+				EA00533B28A4C41400A98258 /* FIRModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		EA10BFE1288BA3D60062A5FF /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				EA10BFE4288BA4510062A5FF /* BallView.swift */,
+				EA10BFE8288C750D0062A5FF /* SettingsView.swift */,
+				EA10BFEA288C87C30062A5FF /* CustomButton.swift */,
+				EA00533328A2381500A98258 /* MenuButton.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		EA10BFE2288BA3DB0062A5FF /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				EA00533128A237CD00A98258 /* MainMenuController.swift */,
+				EA10BFD0288BA2D60062A5FF /* EMDRViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		EA10BFC8288BA2D60062A5FF /* EMDR Tap */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EA10BFDD288BA2D80062A5FF /* Build configuration list for PBXNativeTarget "EMDR Tap" */;
+			buildPhases = (
+				F07E97CD571D180B678DE193 /* [CP] Check Pods Manifest.lock */,
+				EA10BFC5288BA2D60062A5FF /* Sources */,
+				EA10BFC6288BA2D60062A5FF /* Frameworks */,
+				EA10BFC7288BA2D60062A5FF /* Resources */,
+				BE7DE18A4C38070E2E489B5E /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "EMDR Tap";
+			productName = "EMDR Tap";
+			productReference = EA10BFC9288BA2D60062A5FF /* EMDR Tap.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EA10BFC1288BA2D60062A5FF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1340;
+				LastUpgradeCheck = 1340;
+				TargetAttributes = {
+					EA10BFC8288BA2D60062A5FF = {
+						CreatedOnToolsVersion = 13.4.1;
+					};
+				};
+			};
+			buildConfigurationList = EA10BFC4288BA2D60062A5FF /* Build configuration list for PBXProject "EMDR Tap" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = EA10BFC0288BA2D60062A5FF;
+			productRefGroup = EA10BFCA288BA2D60062A5FF /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EA10BFC8288BA2D60062A5FF /* EMDR Tap */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EA10BFC7288BA2D60062A5FF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA10BFD9288BA2D80062A5FF /* LaunchScreen.storyboard in Resources */,
+				EA10BFD6288BA2D80062A5FF /* Assets.xcassets in Resources */,
+				EA00533628A37D1300A98258 /* GoogleService-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		BE7DE18A4C38070E2E489B5E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-EMDR Tap/Pods-EMDR Tap-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-EMDR Tap/Pods-EMDR Tap-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-EMDR Tap/Pods-EMDR Tap-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F07E97CD571D180B678DE193 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-EMDR Tap-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EA10BFC5288BA2D60062A5FF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA00533828A4702500A98258 /* SessionType.swift in Sources */,
+				EA10BFD1288BA2D60062A5FF /* EMDRViewController.swift in Sources */,
+				EA00533228A237CD00A98258 /* MainMenuController.swift in Sources */,
+				EA00533C28A4C41400A98258 /* FIRModel.swift in Sources */,
+				EA10BFCD288BA2D60062A5FF /* AppDelegate.swift in Sources */,
+				EA10BFCF288BA2D60062A5FF /* SceneDelegate.swift in Sources */,
+				EA00533A28A4B1CD00A98258 /* DataService.swift in Sources */,
+				EA10BFE9288C750D0062A5FF /* SettingsView.swift in Sources */,
+				EA00533428A2381500A98258 /* MenuButton.swift in Sources */,
+				EA10BFEB288C87C30062A5FF /* CustomButton.swift in Sources */,
+				EA10BFE7288BA5190062A5FF /* TapManager.swift in Sources */,
+				EA10BFE5288BA4510062A5FF /* BallView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		EA10BFD7288BA2D80062A5FF /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EA10BFD8288BA2D80062A5FF /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		EA10BFDB288BA2D80062A5FF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		EA10BFDC288BA2D80062A5FF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		EA10BFDE288BA2D80062A5FF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 330E792ECF1B15755AA264B6 /* Pods-EMDR Tap.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 4;
+				DEVELOPMENT_TEAM = LZ8V996BTJ;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "EMDR Tap/Info.plist";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.3;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.5play-apps.EMDR-Tap";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		EA10BFDF288BA2D80062A5FF /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D36AB8CC6868B00739480DB0 /* Pods-EMDR Tap.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 4;
+				DEVELOPMENT_TEAM = LZ8V996BTJ;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "EMDR Tap/Info.plist";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.3;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.5play-apps.EMDR-Tap";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EA10BFC4288BA2D60062A5FF /* Build configuration list for PBXProject "EMDR Tap" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EA10BFDB288BA2D80062A5FF /* Debug */,
+				EA10BFDC288BA2D80062A5FF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EA10BFDD288BA2D80062A5FF /* Build configuration list for PBXNativeTarget "EMDR Tap" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EA10BFDE288BA2D80062A5FF /* Debug */,
+				EA10BFDF288BA2D80062A5FF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = EA10BFC1288BA2D60062A5FF /* Project object */;
+}

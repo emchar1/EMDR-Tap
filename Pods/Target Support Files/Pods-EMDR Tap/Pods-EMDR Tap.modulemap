@@ -1,0 +1,6 @@
+framework module Pods_EMDR_Tap {
+  umbrella header "Pods-EMDR Tap-umbrella.h"
+
+  export *
+  module * { export * }
+}

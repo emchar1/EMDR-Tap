@@ -18,8 +18,17 @@ struct DataService {
         }
     }
     
+    static var guestModel: FIRModel?
+    
+    static func setSessionID(_ id: Int) {
+        sessionID = id
+    }
+
     
     // MARK: - Firebase
+    
+    //Used for if sessionType is guest
+    static var listener: ListenerRegistration?
     
     static var docRef: DocumentReference {
         let docRef = Firestore.firestore().collection("HostSession").document(String(format: "%04d", sessionID ?? 9999))

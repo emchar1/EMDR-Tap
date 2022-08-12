@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TapManager: BallViewDelegate, SettingsViewDelegate {
+class TapManager {
 
     // MARK: - Properties
     
@@ -71,6 +71,8 @@ class TapManager: BallViewDelegate, SettingsViewDelegate {
         ])
     }
     
+    // MARK: - Firestore
+    
     private func setFirebaseModelIfHost() {
         guard DataService.sessionType == .host else { return }
         
@@ -88,9 +90,41 @@ class TapManager: BallViewDelegate, SettingsViewDelegate {
 }
 
 
-// MARK: - BallViewDelegate
 
-extension TapManager {
+extension TapManager: SettingsViewDelegate, BallViewDelegate {
+    
+    // MARK: - SettingsViewDelegate
+
+    func playButtonTapped(_ button: CustomButton) {
+        if ballView.getIsPlaying() {
+            ballView.stopPlaying()
+        }
+        else {
+            ballView.startPlaying(speed: TimeInterval(settingsView.getSpeed()))
+            startTime = currentTime
+        }
+
+        settingsView.updatePlayButton(isPlaying: ballView.getIsPlaying())
+        
+        setFirebaseModelIfHost()
+    }
+        
+    func speedSliderChanged(_ slider: UISlider) {
+        if ballView.getIsPlaying() {
+            ballView.stopPlaying(restart: false)
+            ballView.startPlaying(speed: TimeInterval(settingsView.getSpeed()), restart: false)
+        }
+        
+        setFirebaseModelIfHost()
+    }
+    
+    func durationChanged(_ control: UISegmentedControl) {
+        setFirebaseModelIfHost()
+    }
+    
+    
+    // MARK: - BallViewDelegate
+    
     func didStartPlaying(restart: Bool) {
         if restart {
             startTime = currentTime
@@ -127,37 +161,5 @@ extension TapManager {
         numberFormatter.maximumFractionDigits = 0
 
         print("\(numberFormatter.string(from: NSNumber(value: elapsedTime))!)/\(numberFormatter.string(from: NSNumber(value: settingsView.getDuration()))!)")
-    }
-}
-
-
-// MARK: - SettingsViewDelegate
-
-extension TapManager {
-    func playButtonTapped(_ button: CustomButton) {
-        if ballView.getIsPlaying() {
-            ballView.stopPlaying()
-        }
-        else {
-            ballView.startPlaying(speed: TimeInterval(settingsView.getSpeed()))
-            startTime = currentTime
-        }
-
-        settingsView.updatePlayButton(isPlaying: ballView.getIsPlaying())
-        
-        setFirebaseModelIfHost()
-    }
-        
-    func speedSliderChanged(_ slider: UISlider) {
-        if ballView.getIsPlaying() {
-            ballView.stopPlaying(restart: false)
-            ballView.startPlaying(speed: TimeInterval(settingsView.getSpeed()), restart: false)
-        }
-        
-        setFirebaseModelIfHost()
-    }
-    
-    func durationChanged(_ control: UISegmentedControl) {
-        setFirebaseModelIfHost()
     }
 }

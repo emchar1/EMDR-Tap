@@ -127,7 +127,7 @@ extension MainMenuController: MenuButtonDelegate {
         case "Join Session":
             DataService.sessionType = .guest
             
-            let vc = EMDRViewController()
+            let vc = GuestJoinController()
             present(vc, animated: true)
         case "Start Local Session":
             DataService.sessionType = .local

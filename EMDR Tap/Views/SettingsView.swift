@@ -163,6 +163,19 @@ class SettingsView: UIView, CustomButtonDelegate {
         }
     }
     
+    private func getSpeedSlider(_ speed: Float) -> Float {
+        return speedFactor - speed
+    }
+    
+    private func getSelectedSegmentForDuration(_ duration: TimeInterval) -> Int? {
+        switch duration {
+        case 60: return 0
+        case 300: return 1
+        case SettingsView.infiniteDuration: return 2
+        default: return nil
+        }
+    }
+    
     
     // MARK: - Getters & Setters
 

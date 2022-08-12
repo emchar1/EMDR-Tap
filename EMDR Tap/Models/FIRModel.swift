@@ -12,7 +12,7 @@ struct FIRModel: Codable, Identifiable {
     @DocumentID public var id: String?
     
     var speed: Float
-    var duration: TimeInterval?
+    var duration: TimeInterval
     var isPlaying: Bool
     var currentImage: Int
 }

@@ -14,6 +14,8 @@
 		EA00533828A4702500A98258 /* SessionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA00533728A4702500A98258 /* SessionType.swift */; };
 		EA00533A28A4B1CD00A98258 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA00533928A4B1CD00A98258 /* DataService.swift */; };
 		EA00533C28A4C41400A98258 /* FIRModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA00533B28A4C41400A98258 /* FIRModel.swift */; };
+		EA00533E28A6227300A98258 /* GuestJoinController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA00533D28A6227300A98258 /* GuestJoinController.swift */; };
+		EA00534028A62FD100A98258 /* Extension+UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA00533F28A62FD100A98258 /* Extension+UITextField.swift */; };
 		EA10BFCD288BA2D60062A5FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA10BFCC288BA2D60062A5FF /* AppDelegate.swift */; };
 		EA10BFCF288BA2D60062A5FF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA10BFCE288BA2D60062A5FF /* SceneDelegate.swift */; };
 		EA10BFD1288BA2D60062A5FF /* EMDRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA10BFD0288BA2D60062A5FF /* EMDRViewController.swift */; };
@@ -35,6 +37,8 @@
 		EA00533728A4702500A98258 /* SessionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionType.swift; sourceTree = "<group>"; };
 		EA00533928A4B1CD00A98258 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		EA00533B28A4C41400A98258 /* FIRModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FIRModel.swift; sourceTree = "<group>"; };
+		EA00533D28A6227300A98258 /* GuestJoinController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestJoinController.swift; sourceTree = "<group>"; };
+		EA00533F28A62FD100A98258 /* Extension+UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UITextField.swift"; sourceTree = "<group>"; };
 		EA10BFC9288BA2D60062A5FF /* EMDR Tap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EMDR Tap.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA10BFCC288BA2D60062A5FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EA10BFCE288BA2D60062A5FF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -77,6 +81,14 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		EA00534128A62FD700A98258 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				EA00533F28A62FD100A98258 /* Extension+UITextField.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 		EA10BFC0288BA2D60062A5FF = {
 			isa = PBXGroup;
 			children = (
@@ -100,6 +112,7 @@
 			children = (
 				EA10BFCC288BA2D60062A5FF /* AppDelegate.swift */,
 				EA10BFCE288BA2D60062A5FF /* SceneDelegate.swift */,
+				EA00534128A62FD700A98258 /* Utilities */,
 				EA10BFE0288BA3CB0062A5FF /* Models */,
 				EA10BFE1288BA3D60062A5FF /* Views */,
 				EA10BFE2288BA3DB0062A5FF /* Controllers */,
@@ -137,6 +150,7 @@
 			isa = PBXGroup;
 			children = (
 				EA00533128A237CD00A98258 /* MainMenuController.swift */,
+				EA00533D28A6227300A98258 /* GuestJoinController.swift */,
 				EA10BFD0288BA2D60062A5FF /* EMDRViewController.swift */,
 			);
 			path = Controllers;
@@ -258,8 +272,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA00533828A4702500A98258 /* SessionType.swift in Sources */,
+				EA00534028A62FD100A98258 /* Extension+UITextField.swift in Sources */,
 				EA10BFD1288BA2D60062A5FF /* EMDRViewController.swift in Sources */,
 				EA00533228A237CD00A98258 /* MainMenuController.swift in Sources */,
+				EA00533E28A6227300A98258 /* GuestJoinController.swift in Sources */,
 				EA00533C28A4C41400A98258 /* FIRModel.swift in Sources */,
 				EA10BFCD288BA2D60062A5FF /* AppDelegate.swift in Sources */,
 				EA10BFCF288BA2D60062A5FF /* SceneDelegate.swift in Sources */,

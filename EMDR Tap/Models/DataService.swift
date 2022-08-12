@@ -9,15 +9,7 @@ import FirebaseFirestore
 
 struct DataService {
     static private(set) var sessionID: Int?
-
-    static var sessionType: SessionType? {
-        didSet {
-            if sessionType == .host {
-                sessionID = Int.random(in: 0...9998)
-            }
-        }
-    }
-    
+    static var sessionType: SessionType?
     static var guestModel: FIRModel?
     
     static func setSessionID(_ id: Int) {

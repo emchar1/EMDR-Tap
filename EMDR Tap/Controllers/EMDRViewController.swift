@@ -22,6 +22,7 @@ class EMDRViewController: UIViewController {
         
         setupViews()
         layoutViews()
+        setupFirestoreListenerIfGuest()
     }
     
     private func setupViews() {
@@ -43,6 +44,60 @@ class EMDRViewController: UIViewController {
             homeButton.widthAnchor.constraint(equalToConstant: buttonSize),
             homeButton.heightAnchor.constraint(equalToConstant: buttonSize)
         ])
+    }
+    
+    private func setupFirestoreListenerIfGuest() {
+        guard DataService.sessionType == .guest else { return }
+        
+        
+        DataService.listener = DataService.docRef.addSnapshotListener({ (snapshot, error) in
+            guard error == nil else { return print("Error getting docs: \(error!)") }
+            guard let snapshot = snapshot, let data = snapshot.data() else { return }
+            
+            guard let isPlaying = data["isPlaying"] as? Bool,
+                  let currentImage = data["currentImage"] as? Int,
+                  let speed = data["speed"] as? Double,
+                  let duration = data["duration"] as? TimeInterval else { return }
+            
+            print("Good")
+            
+            if DataService.guestModel?.isPlaying != isPlaying {
+                print("currentIsPlaying: \(DataService.guestModel?.isPlaying), newValue: \(isPlaying)")
+                
+                DataService.guestModel?.isPlaying = isPlaying
+                
+                self.tapManager.updateIfGuest_StartStop()
+            }
+            
+            if DataService.guestModel?.currentImage != currentImage {
+                print("currentCurrentImage: \(DataService.guestModel?.currentImage), newValue: \(currentImage)")
+                
+                DataService.guestModel?.currentImage = currentImage
+            }
+            
+            if DataService.guestModel?.speed != Float(speed) {
+                print("currentSpeed: \(DataService.guestModel?.speed), newValue: \(speed)")
+                
+                DataService.guestModel?.speed = Float(speed)
+                
+                self.tapManager.updateIfGuest_Speed()
+            }
+            
+            if DataService.guestModel?.duration != duration {
+                print("currentDuration: \(DataService.guestModel?.duration), newValue: \(duration)")
+                
+                DataService.guestModel?.duration = duration
+            }
+            
+            DataService.guestModel = FIRModel(id: DataService.docRef.documentID,
+                                              speed: Float(speed),
+                                              duration: duration,
+                                              isPlaying: isPlaying,
+                                              currentImage: currentImage)
+            
+        })
+        
+        print("Now go here")
     }
 }
 

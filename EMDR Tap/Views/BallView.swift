@@ -37,7 +37,7 @@ class BallView: UIView, CustomButtonDelegate {
     private var direction: BallDirection = .right
     private var isPlaying = false
 
-    private var timer: Timer!
+    private var timer: Timer?
     private var superView: UIView!
     private var ballButton: CustomButton!
     private var centerXConstraint: NSLayoutConstraint!
@@ -112,7 +112,7 @@ class BallView: UIView, CustomButtonDelegate {
             animateBall(direction: .center, completion: nil)
         }
         
-        timer.invalidate()
+        timer?.invalidate()
         
         delegate?.didStopPlaying(restart: restart)
     }

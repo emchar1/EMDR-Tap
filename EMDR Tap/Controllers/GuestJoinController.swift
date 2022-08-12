@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import FirebaseFirestore
 
 class GuestJoinController: UIViewController {
 
@@ -75,33 +74,11 @@ extension GuestJoinController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         guard let text = textField.text, text.count == 4, let sessionID = Int(text), DataService.sessionType == .guest else { return true }
         
-        // FIXME: - Obviously read from input
         DataService.setSessionID(sessionID)
-        
-        print("Returning...")
-        
-        DataService.listener = DataService.docRef.addSnapshotListener({ (snapshot, error) in
-            guard error == nil else { return print("Error getting docs: \(error!)") }
-            guard let snapshot = snapshot, let data = snapshot.data() else { return }
-            
-            guard let isPlaying = data["isPlaying"] as? Bool,
-                  let currentImage = data["currentImage"] as? Int,
-                  let speed = data["speed"] as? Double,
-                  let duration = data["duration"] as? TimeInterval else { return }
-            
-            print("Good")
-            
-            DataService.guestModel = FIRModel(id: DataService.docRef.documentID, speed: Float(speed), duration: duration, isPlaying: isPlaying, currentImage: currentImage)
-            
-            print("Data: \(data)")
-        })
-        
-        print("Now go here")
         
         let vc = EMDRViewController()
         present(vc, animated: true)
         
         return true
-
     }
 }

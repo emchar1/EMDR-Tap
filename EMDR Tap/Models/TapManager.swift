@@ -11,6 +11,8 @@ class TapManager {
 
     // MARK: - Properties
     
+    private var controls: TapManagerControls!
+    
     private let timerInterval: TimeInterval = 1.0
     private var timer: Timer?
     private var superView: UIView!
@@ -20,6 +22,13 @@ class TapManager {
     private var startTime: TimeInterval = Date.timeIntervalSinceReferenceDate
     private var currentTime: TimeInterval { Date.timeIntervalSinceReferenceDate }
     private var elapsedTime: TimeInterval { currentTime - startTime }
+    
+    
+//    //Controls
+//    private var controlIsPlaying: Bool!
+//    private var controlSpeed: Float!
+//    private var controlDuration: TimeInterval!
+//    private var controlCurrentImage: Int!
     
 
     // MARK: - Initialization
@@ -36,6 +45,14 @@ class TapManager {
         timer = Timer()
         
         self.superView.backgroundColor = UIColor(named: "bgColor")
+        
+        // FIXME: - How to make use of controls based on sessionType???
+        if DataService.sessionType == .guest, let model = DataService.guestModel {
+            controls = TapManagerControls(isPlaying: model.isPlaying, speed: model.speed, duration: model.duration, currentImage: model.currentImage)
+        }
+        else {
+            controls = TapManagerControls(isPlaying: false, speed: <#T##Float#>, duration: <#T##TimeInterval#>, currentImage: <#T##Int#>)
+        }
 
         ballView = BallView(in: superView)
         ballView.translatesAutoresizingMaskIntoConstraints = false
@@ -76,7 +93,6 @@ class TapManager {
     private func setFirebaseModelIfHost() {
         guard DataService.sessionType == .host else { return }
         
-        
         do {
             try DataService.docRef.setData(from: FIRModel(id: DataService.docRef.documentID,
                                                           speed: settingsView.getSpeed(),
@@ -87,6 +103,43 @@ class TapManager {
             print("Error writing to Firestore: \(error)")
         }
     }
+    
+
+
+    func updateIfGuest_StartStop() {
+        guard DataService.sessionType == .guest, let model = DataService.guestModel else { return }
+        print("model.isPlaying: \(model.isPlaying)")
+        if !model.isPlaying {
+            ballView.stopPlaying()
+        }
+        else {
+            ballView.startPlaying(speed: TimeInterval(model.speed))
+            startTime = currentTime
+        }
+
+        settingsView.updatePlayButton(isPlaying: model.isPlaying)
+    }
+    
+    func updateIfGuest_Speed() {
+        guard DataService.sessionType == .guest, let model = DataService.guestModel else { return }
+
+        if model.isPlaying {
+            ballView.stopPlaying(restart: false)
+            ballView.startPlaying(speed: TimeInterval(model.speed), restart: false)
+        }
+    }
+    
+//    func updatIfGuest_Duration() {
+//        guard DataService.sessionType == .guest, let model = DataService.guestModel else { return }
+//
+//    }
+    
+    
+//    func updateIfGuest_BallImage() {
+//        guard DataService.sessionType == .guest, let model = DataService.guestModel else { return }
+//
+//        
+//    }
 }
 
 

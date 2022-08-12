@@ -121,6 +121,7 @@ extension MainMenuController: MenuButtonDelegate {
         switch sender.titleLabel?.text {
         case "Host Session":
             DataService.sessionType = .host
+            DataService.setSessionID(Int.random(in: 0...9998))
             
             let vc = EMDRViewController()
             present(vc, animated: true)

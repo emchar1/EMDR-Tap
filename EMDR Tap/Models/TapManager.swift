@@ -51,7 +51,12 @@ class TapManager {
             controls = TapManagerControls(isPlaying: model.isPlaying, speed: model.speed, duration: model.duration, currentImage: model.currentImage)
         }
         else {
-            controls = TapManagerControls(isPlaying: false, speed: <#T##Float#>, duration: <#T##TimeInterval#>, currentImage: <#T##Int#>)
+            //isPlaying should always start out false - ball
+            //speed set in settings
+            //duration - settings
+            //currentImage - ball
+            
+            controls = TapManagerControls(isPlaying: false, speed: 0, duration: 0, currentImage: 0)
         }
 
         ballView = BallView(in: superView)

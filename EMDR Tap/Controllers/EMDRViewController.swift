@@ -62,30 +62,22 @@ class EMDRViewController: UIViewController {
             print("Good")
             
             if DataService.guestModel?.isPlaying != isPlaying {
-                print("currentIsPlaying: \(DataService.guestModel?.isPlaying), newValue: \(isPlaying)")
-                
                 DataService.guestModel?.isPlaying = isPlaying
                 
                 self.tapManager.updateIfGuest_StartStop()
             }
             
             if DataService.guestModel?.currentImage != currentImage {
-                print("currentCurrentImage: \(DataService.guestModel?.currentImage), newValue: \(currentImage)")
-                
                 DataService.guestModel?.currentImage = currentImage
             }
             
             if DataService.guestModel?.speed != Float(speed) {
-                print("currentSpeed: \(DataService.guestModel?.speed), newValue: \(speed)")
-                
                 DataService.guestModel?.speed = Float(speed)
                 
                 self.tapManager.updateIfGuest_Speed()
             }
             
             if DataService.guestModel?.duration != duration {
-                print("currentDuration: \(DataService.guestModel?.duration), newValue: \(duration)")
-                
                 DataService.guestModel?.duration = duration
             }
             

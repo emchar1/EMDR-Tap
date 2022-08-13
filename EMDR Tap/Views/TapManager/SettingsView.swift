@@ -19,6 +19,8 @@ class SettingsView: UIView, CustomButtonDelegate {
     
     static let infiniteDuration: TimeInterval = 0
     static let speedFactor: Float = 1.5
+    static let durations: [TimeInterval] = [10, 5 * 60, SettingsView.infiniteDuration]
+    
     private let dialSize: CGFloat = 40
     private let dialPadding: CGFloat = 50
     private let dialPaddingTop: CGFloat = 20
@@ -159,9 +161,9 @@ class SettingsView: UIView, CustomButtonDelegate {
     
     static func getDurationForSelectedSegment(_ value: Int) -> TimeInterval {
         switch value {
-        case 0: return 60
-        case 1: return 5 * 60
-        case 2: return SettingsView.infiniteDuration
+        case 0: return durations[0]
+        case 1: return durations[1]
+        case 2: return durations[2]
         default: return -1
         }
     }
@@ -172,9 +174,9 @@ class SettingsView: UIView, CustomButtonDelegate {
     
     static func getSelectedSegmentForDuration(_ duration: TimeInterval) -> Int {
         switch duration {
-        case 60: return 0
-        case 5 * 60: return 1
-        case SettingsView.infiniteDuration: return 2
+        case durations[0]: return 0
+        case durations[1]: return 1
+        case durations[2]: return 2
         default: return 0
         }
     }

@@ -17,6 +17,7 @@
 		EA00533E28A6227300A98258 /* GuestJoinController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA00533D28A6227300A98258 /* GuestJoinController.swift */; };
 		EA00534028A62FD100A98258 /* Extension+UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA00533F28A62FD100A98258 /* Extension+UITextField.swift */; };
 		EA00534328A6C8DE00A98258 /* TapManagerControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA00534228A6C8DE00A98258 /* TapManagerControls.swift */; };
+		EA00534728A8369F00A98258 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA00534628A8369F00A98258 /* LoginView.swift */; };
 		EA10BFCD288BA2D60062A5FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA10BFCC288BA2D60062A5FF /* AppDelegate.swift */; };
 		EA10BFCF288BA2D60062A5FF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA10BFCE288BA2D60062A5FF /* SceneDelegate.swift */; };
 		EA10BFD1288BA2D60062A5FF /* EMDRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA10BFD0288BA2D60062A5FF /* EMDRViewController.swift */; };
@@ -41,6 +42,7 @@
 		EA00533D28A6227300A98258 /* GuestJoinController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestJoinController.swift; sourceTree = "<group>"; };
 		EA00533F28A62FD100A98258 /* Extension+UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UITextField.swift"; sourceTree = "<group>"; };
 		EA00534228A6C8DE00A98258 /* TapManagerControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapManagerControls.swift; sourceTree = "<group>"; };
+		EA00534628A8369F00A98258 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		EA10BFC9288BA2D60062A5FF /* EMDR Tap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EMDR Tap.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA10BFCC288BA2D60062A5FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EA10BFCE288BA2D60062A5FF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 			children = (
 				EA00534428A72AA900A98258 /* TapManager */,
 				EA00534528A72ABA00A98258 /* Buttons */,
+				EA00534628A8369F00A98258 /* LoginView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -304,6 +307,7 @@
 				EA00533428A2381500A98258 /* MenuButton.swift in Sources */,
 				EA10BFEB288C87C30062A5FF /* CustomButton.swift in Sources */,
 				EA10BFE7288BA5190062A5FF /* TapManager.swift in Sources */,
+				EA00534728A8369F00A98258 /* LoginView.swift in Sources */,
 				EA10BFE5288BA4510062A5FF /* BallView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

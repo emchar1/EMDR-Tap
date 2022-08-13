@@ -79,6 +79,9 @@ class TapManager {
         
         //Only add the Settings control if it's NOT a guest
 //        guard DataService.sessionType != .guest else { return }
+        if DataService.sessionType == .guest {
+            settingsView.isUserInteractionEnabled = false
+        }
             
         superView.addSubview(settingsView)
             
@@ -211,6 +214,8 @@ extension TapManager: SettingsViewDelegate, BallViewDelegate {
             ballView.stopPlaying()
             timer?.invalidate()
             settingsView.updatePlayButton(isPlaying: false)
+
+            setFirebaseModelIfHost()
             return
         }
         

@@ -18,10 +18,10 @@ class SettingsView: UIView, CustomButtonDelegate {
     // MARK: - Properties
     
     static let infiniteDuration: TimeInterval = 0
+    static let speedFactor: Float = 1.5
     private let dialSize: CGFloat = 40
     private let dialPadding: CGFloat = 50
     private let dialPaddingTop: CGFloat = 20
-    private let speedFactor: Float = 1.5
     private var isExpanded = true
     
     private var speed: Float!
@@ -147,32 +147,23 @@ class SettingsView: UIView, CustomButtonDelegate {
     }
     
     private func setSpeed() {
-        speed = speedFactor - speedSlider.value
+        speed = SettingsView.getSpeedForSliderValue(speedSlider.value)
     }
     
     private func setDuration() {
-        switch durationControl.selectedSegmentIndex {
-        case 0:
-            duration = 60
-        case 1:
-            duration = 5 * 60
-        case 2:
-            duration = SettingsView.infiniteDuration
-        default:
-            duration = -1
-        }
+        duration = SettingsView.getDurationForSelectedSegment(durationControl.selectedSegmentIndex)
     }
     
-    private func getSpeedSlider(_ speed: Float) -> Float {
-        return speedFactor - speed
+    static func getSpeedForSliderValue(_ value: Float) -> Float {
+        return speedFactor - value
     }
     
-    private func getSelectedSegmentForDuration(_ duration: TimeInterval) -> Int? {
-        switch duration {
-        case 60: return 0
-        case 300: return 1
-        case SettingsView.infiniteDuration: return 2
-        default: return nil
+    static func getDurationForSelectedSegment(_ value: Int) -> TimeInterval {
+        switch value {
+        case 0: return 60
+        case 1: return 5 * 60
+        case 2: return SettingsView.infiniteDuration
+        default: return -1
         }
     }
     

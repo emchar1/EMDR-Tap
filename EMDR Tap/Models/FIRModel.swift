@@ -11,8 +11,8 @@ import FirebaseFirestoreSwift
 struct FIRModel: Codable, Identifiable {
     @DocumentID public var id: String?
     
+    var isPlaying: Bool
     var speed: Float
     var duration: TimeInterval
-    var isPlaying: Bool
     var currentImage: Int
 }

@@ -56,7 +56,14 @@ class TapManager {
             //duration - settings
             //currentImage - ball
             
-            controls = TapManagerControls(isPlaying: false, speed: 0, duration: 0, currentImage: 0)
+            let sliderValue = UserDefaults.standard.object(forKey: "SliderValue") as? Float ?? 0.5
+            let durationControlValue = UserDefaults.standard.integer(forKey: "SegmentedControlIndex")
+            let currentImageValue = UserDefaults.standard.integer(forKey: "BallImage")
+            
+            controls = TapManagerControls(isPlaying: false,
+                                          speed: SettingsView.getSpeedForSliderValue(sliderValue),
+                                          duration: SettingsView.getDurationForSelectedSegment(durationControlValue),
+                                          currentImage: currentImageValue)
         }
 
         ballView = BallView(in: superView)
@@ -100,9 +107,9 @@ class TapManager {
         
         do {
             try DataService.docRef.setData(from: FIRModel(id: DataService.docRef.documentID,
+                                                          isPlaying: ballView.getIsPlaying(),
                                                           speed: settingsView.getSpeed(),
                                                           duration: settingsView.getDuration(),
-                                                          isPlaying: ballView.getIsPlaying(),
                                                           currentImage: ballView.getCurrentImage()))
         } catch {
             print("Error writing to Firestore: \(error)")

@@ -82,9 +82,9 @@ class EMDRViewController: UIViewController {
             }
             
             DataService.guestModel = FIRModel(id: DataService.docRef.documentID,
+                                              isPlaying: isPlaying,
                                               speed: Float(speed),
                                               duration: duration,
-                                              isPlaying: isPlaying,
                                               currentImage: currentImage)
             
         })

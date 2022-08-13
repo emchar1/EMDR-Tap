@@ -16,6 +16,7 @@ class EMDRViewController: UIViewController {
     private var tapManager: TapManager!
     private var homeButton: CustomButton!
     private var hostIDLabel: UILabel!
+    private var guestHasBeenSetUp = false
     var hostID: Int?
     
     
@@ -24,11 +25,24 @@ class EMDRViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupViews()
-        layoutViews()
-        setupFirestoreListenerIfGuest()
+        if DataService.sessionType != .guest {
+            //Set this up the usual way if not a guest
+            setupViews()
+            layoutViews()
+        }
+        else {
+            //Otherwise, set it up in completion handler so we can capture the DataModel from Firestore
+            setupFirestoreListenerIfGuest()
+        }
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        //MUST call this when exiting the view, otherwise things don't get reset!!
+        DataService.listener?.remove()
+    }
+        
     private func setupViews() {
         tapManager = TapManager(in: view)
         
@@ -37,11 +51,12 @@ class EMDRViewController: UIViewController {
         
         hostIDLabel = UILabel()
         hostIDLabel.text = hostID != nil ? "Host ID: " + String(format: "%04d", hostID!) : ""
+        hostIDLabel.textColor = UIColor(named: "buttonColor")
         hostIDLabel.font = UIFont(name: "Georgia-Bold", size: 20)
         hostIDLabel.translatesAutoresizingMaskIntoConstraints = false
         
     }
-    
+        
     private func layoutViews() {
         let buttonPadding: CGFloat = 20
         let buttonSize: CGFloat = 30
@@ -75,41 +90,44 @@ class EMDRViewController: UIViewController {
                   let speed = data["speed"] as? Double,
                   let duration = data["duration"] as? TimeInterval else { return }
             
-            print("Good")
+            print("Listener passed the vibe check...")
+            
+            //Also, only set this up initially!
+            if !self.guestHasBeenSetUp {
+                DataService.guestModel = FIRModel(id: DataService.docRef.documentID,
+                                                  isPlaying: isPlaying,
+                                                  speed: Float(speed),
+                                                  duration: duration,
+                                                  currentImage: currentImage)
+                self.setupViews()
+                self.layoutViews()
+                self.guestHasBeenSetUp = true
+                
+                print("Initial setupViews for guest")
+            }
             
             if DataService.guestModel?.isPlaying != isPlaying {
                 DataService.guestModel?.isPlaying = isPlaying
-                
                 self.tapManager.updateIfGuest_StartStop()
             }
             
             if DataService.guestModel?.currentImage != currentImage {
                 DataService.guestModel?.currentImage = currentImage
-                
                 self.tapManager.updateIfGuest_BallImage()
             }
             
             if DataService.guestModel?.speed != Float(speed) {
                 DataService.guestModel?.speed = Float(speed)
-                
                 self.tapManager.updateIfGuest_Speed()
             }
             
             if DataService.guestModel?.duration != duration {
                 DataService.guestModel?.duration = duration
-                
                 self.tapManager.updateIfGuest_Duration()
             }
-            
-            DataService.guestModel = FIRModel(id: DataService.docRef.documentID,
-                                              isPlaying: isPlaying,
-                                              speed: Float(speed),
-                                              duration: duration,
-                                              currentImage: currentImage)
-
         })
         
-        print("Now go here")
+        print("Printing outside of the Listener loop...")
     }
 }
 
@@ -119,6 +137,8 @@ class EMDRViewController: UIViewController {
 extension EMDRViewController: CustomButtonDelegate {
     func didTapButton(_ button: CustomButton) {
         tapManager.didStopPlaying(restart: true)
+        
+        DataService.guestModel = nil
         
         if DataService.sessionType == .guest {
             self.presentingViewController?.presentingViewController?.dismiss(animated: true)

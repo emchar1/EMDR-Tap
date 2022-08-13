@@ -41,13 +41,9 @@ class TapManager {
         // FIXME: - How to make use of controls based on sessionType???
         if DataService.sessionType == .guest, let model = DataService.guestModel {
             controls = TapManagerControls(isPlaying: model.isPlaying, speed: model.speed, duration: model.duration, currentImage: model.currentImage)
+            print("Setting up controls for GUEST in TapManager.")
         }
         else {
-            //isPlaying should always start out false - ball
-            //speed set in settings
-            //duration - settings
-            //currentImage - ball
-            
             let sliderValue = UserDefaults.standard.object(forKey: "SliderValue") as? Float ?? 0.5
             let durationControlValue = UserDefaults.standard.integer(forKey: "SegmentedControlIndex")
             let currentImageValue = UserDefaults.standard.integer(forKey: "BallImage")
@@ -56,6 +52,7 @@ class TapManager {
                                           speed: SettingsView.getSpeedForSliderValue(sliderValue),
                                           duration: SettingsView.getDurationForSelectedSegment(durationControlValue),
                                           currentImage: currentImageValue)
+            print("Setting up controls for NON-GUEST in TapManager.")
         }
 
         ballView = BallView(in: superView, tapManagerControls: controls)
@@ -80,7 +77,8 @@ class TapManager {
         ])
 
         
-        guard DataService.sessionType != .guest else { return }
+        //Only add the Settings control if it's NOT a guest
+//        guard DataService.sessionType != .guest else { return }
             
         superView.addSubview(settingsView)
             
@@ -108,44 +106,56 @@ class TapManager {
         }
     }
     
-
-
     func updateIfGuest_StartStop() {
-        guard DataService.sessionType == .guest, let model = DataService.guestModel else { return }
+        guard DataService.sessionType == .guest else { return print("Not a Guest. Exiting.")}
+        guard let model = DataService.guestModel else { return print("DataService.guestModel is nil.") }
 
-        if !model.isPlaying {
-            ballView.stopPlaying()
-        }
-        else {
-            ballView.startPlaying(speed: TimeInterval(model.speed))
-            startTime = currentTime
-        }
-
-        settingsView.updatePlayButton(isPlaying: model.isPlaying)
+        updateBallMovement(isPlaying: !model.isPlaying, speed: model.speed) //isPlaying is reversed here...
     }
     
     func updateIfGuest_Speed() {
-        guard DataService.sessionType == .guest, let model = DataService.guestModel else { return }
+        guard DataService.sessionType == .guest else { return print("Not a Guest. Exiting.")}
+        guard let model = DataService.guestModel else { return print("DataService.guestModel is nil.") }
 
-        if model.isPlaying {
-            ballView.stopPlaying(restart: false)
-            ballView.startPlaying(speed: TimeInterval(model.speed), restart: false)
-        }
+        updateSpeed(isPlaying: model.isPlaying, speed: model.speed)
     }
     
     func updateIfGuest_Duration() {
-        guard DataService.sessionType == .guest, let model = DataService.guestModel else { return }
+        guard DataService.sessionType == .guest else { return print("Not a Guest. Exiting.")}
+        guard let model = DataService.guestModel else { return print("DataService.guestModel is nil.") }
 
         settingsView.tapManagerControls.duration = model.duration
     }
     
     
     func updateIfGuest_BallImage() {
-        guard DataService.sessionType == .guest, let model = DataService.guestModel else { return }
+        guard DataService.sessionType == .guest else { return print("Not a Guest. Exiting.")}
+        guard let model = DataService.guestModel else { return print("DataService.guestModel is nil.") }
 
         ballView.tapManagerControls.currentImage = model.currentImage
-                
         ballView.setBallImage(model.currentImage)
+    }
+    
+    
+    // MARK: - Helper Functions
+    
+    private func updateBallMovement(isPlaying: Bool, speed: Float) {
+        if isPlaying {
+            ballView.stopPlaying()
+        }
+        else {
+            ballView.startPlaying(speed: TimeInterval(speed))
+            startTime = currentTime
+        }
+        
+        settingsView.updatePlayButton(isPlaying: !isPlaying)
+    }
+    
+    private func updateSpeed(isPlaying: Bool, speed: Float) {
+        if isPlaying {
+            ballView.stopPlaying(restart: false)
+            ballView.startPlaying(speed: TimeInterval(speed), restart: false)
+        }
     }
 }
 
@@ -156,24 +166,13 @@ extension TapManager: SettingsViewDelegate, BallViewDelegate {
     // MARK: - SettingsViewDelegate
 
     func playButtonTapped(_ button: CustomButton) {
-        if ballView.getIsPlaying() {
-            ballView.stopPlaying()
-        }
-        else {
-            ballView.startPlaying(speed: TimeInterval(settingsView.getSpeed()))
-            startTime = currentTime
-        }
-
-        settingsView.updatePlayButton(isPlaying: ballView.getIsPlaying())
+        updateBallMovement(isPlaying: ballView.getIsPlaying(), speed: settingsView.getSpeed())
         
         setFirebaseModelIfHost()
     }
         
     func speedSliderChanged(_ slider: UISlider) {
-        if ballView.getIsPlaying() {
-            ballView.stopPlaying(restart: false)
-            ballView.startPlaying(speed: TimeInterval(settingsView.getSpeed()), restart: false)
-        }
+        updateSpeed(isPlaying: ballView.getIsPlaying(), speed: settingsView.getSpeed())
         
         setFirebaseModelIfHost()
     }

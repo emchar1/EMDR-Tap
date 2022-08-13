@@ -25,6 +25,13 @@ extension UITextField {
     }
     
     // Default actions:
-    @objc private func doneButtonTapped() { self.resignFirstResponder() }
-    @objc private func cancelButtonTapped() { self.resignFirstResponder() }
+    @objc private func doneButtonTapped() {
+        self.resignFirstResponder()
+        
+    }
+    
+    @objc private func cancelButtonTapped() {
+        self.resignFirstResponder()
+        
+    }
 }

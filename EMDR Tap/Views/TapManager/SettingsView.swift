@@ -24,10 +24,7 @@ class SettingsView: UIView, CustomButtonDelegate {
     private let dialPaddingTop: CGFloat = 20
     private var isExpanded = true
     
-    var tapManagerControls: TapManagerControls!
-//    private var speed: Float!
-//    private var duration: TimeInterval!
-
+    private var superView: UIView!
     private var settingsButton: CustomButton!
     private var speedSlider: UISlider!
     private var playButton: CustomButton!
@@ -37,7 +34,7 @@ class SettingsView: UIView, CustomButtonDelegate {
     private var speedSliderConstraint: NSLayoutConstraint!
     private var durationConstraint: NSLayoutConstraint!
     
-    private var superView: UIView!
+    var tapManagerControls: TapManagerControls!
     weak var delegate: SettingsViewDelegate?
     
     

@@ -32,18 +32,14 @@ class BallView: UIView, CustomButtonDelegate {
                                           UIImage(systemName: "atom"),
                                           UIImage(systemName: "face.smiling"),
                                           UIImage(named: "EMDR-warren")]
-//    private var currentImage = UserDefaults.standard.integer(forKey: "BallImage")
-//    private var speed: TimeInterval = 1.0
-//    private var isPlaying = false
-    
-    var tapManagerControls: TapManagerControls!
+
     private var direction: BallDirection = .right
     private var timer: Timer?
     private var superView: UIView!
     private var ballButton: CustomButton!
     private var centerXConstraint: NSLayoutConstraint!
-    
-    
+        
+    var tapManagerControls: TapManagerControls!
     weak var delegate: BallViewDelegate?
 
     
@@ -70,7 +66,13 @@ class BallView: UIView, CustomButtonDelegate {
                                   asTemplate: (tapManagerControls.currentImage >= ballImages.count - 1 ? false : true),
                                   shouldAnimatePress: true)
         ballButton.isUserInteractionEnabled = DataService.sessionType != .guest ? true : false
+
+        // FIXME: - Does this work???
+        if tapManagerControls.isPlaying {
+            startPlaying(speed: TimeInterval(tapManagerControls.speed))
+        }
         
+        //Don't give control to Guests
         if DataService.sessionType != .guest {
             ballButton.delegate = self
         }
@@ -157,7 +159,6 @@ class BallView: UIView, CustomButtonDelegate {
 extension BallView {
     func didTapButton(_ sender: CustomButton) {
         tapManagerControls.currentImage = tapManagerControls.currentImage >= ballImages.count - 1 ? 0 : tapManagerControls.currentImage + 1
-        
         setBallImage(tapManagerControls.currentImage)
      
         UserDefaults.standard.set(tapManagerControls.currentImage, forKey: "BallImage")

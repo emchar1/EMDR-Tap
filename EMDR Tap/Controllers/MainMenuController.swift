@@ -11,9 +11,7 @@ class MainMenuController: UIViewController {
     
     // MARK: - Properties
     
-    private var lwcLabel: UILabel!
-    private var comingSoon: UILabel!
-    private var comingSoon2: UILabel!
+    private var livingWithClarityLabel: UILabel!
     
     private var hostButton: MenuButton!
     private var joinButton: MenuButton!
@@ -35,35 +33,12 @@ class MainMenuController: UIViewController {
     private func setupViews() {
         view.backgroundColor = UIColor(named: "bgMenuColor")
         
-        lwcLabel = UILabel()
-        lwcLabel.text = "Living with Clarity"
-        lwcLabel.textColor = UIColor(named: "buttonMenuColor")
-        lwcLabel.textAlignment = .center
-        lwcLabel.font = UIFont(name: "HelveticaNeue", size: 32)
-        lwcLabel.translatesAutoresizingMaskIntoConstraints = false
-        
-        
-        
-        // FIXME: - Delete these eventually...
-        comingSoon = UILabel()
-        comingSoon.backgroundColor = .systemRed
-        comingSoon.text = " Coming soon! "
-        comingSoon.textColor = .white
-        comingSoon.font = UIFont(name: "HelveticaNeue-Bold", size: 12)
-        comingSoon.transform = CGAffineTransform(rotationAngle: -.pi / 8)
-        comingSoon.isUserInteractionEnabled = false
-        comingSoon.translatesAutoresizingMaskIntoConstraints = false
-        
-        comingSoon2 = UILabel()
-        comingSoon2.backgroundColor = .systemRed
-        comingSoon2.text = " Coming soon! "
-        comingSoon2.textColor = .white
-        comingSoon2.font = UIFont(name: "HelveticaNeue-Bold", size: 12)
-        comingSoon2.transform = CGAffineTransform(rotationAngle: -.pi / 8)
-        comingSoon2.isUserInteractionEnabled = false
-        comingSoon2.translatesAutoresizingMaskIntoConstraints = false
-        
-        
+        livingWithClarityLabel = UILabel()
+        livingWithClarityLabel.text = "Living with Clarity"
+        livingWithClarityLabel.textColor = UIColor(named: "buttonMenuColor")
+        livingWithClarityLabel.textAlignment = .center
+        livingWithClarityLabel.font = UIFont(name: "HelveticaNeue", size: 32)
+        livingWithClarityLabel.translatesAutoresizingMaskIntoConstraints = false
         
         hostButton = MenuButton(title: "Host Session")
         hostButton.delegate = self
@@ -93,15 +68,12 @@ class MainMenuController: UIViewController {
     private func layoutViews() {
         let topBottomBorder: CGFloat = 60
         
-        view.addSubview(lwcLabel)
+        view.addSubview(livingWithClarityLabel)
         view.addSubview(vStack)
-        
-        hostButton.addSubview(comingSoon)
-        joinButton.addSubview(comingSoon2)
-        
+                
         NSLayoutConstraint.activate([
-            lwcLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: topBottomBorder),
-            lwcLabel.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            livingWithClarityLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: topBottomBorder),
+            livingWithClarityLabel.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
             
             vStack.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             view.safeAreaLayoutGuide.bottomAnchor.constraint(equalTo: vStack.bottomAnchor, constant: topBottomBorder),

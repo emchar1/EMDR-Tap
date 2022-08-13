@@ -11,6 +11,7 @@ class GuestJoinController: UIViewController {
 
     // MARK: - Properties
     
+    private var homeButton: CustomButton!
     private var hostIDField: UITextField!
     
 
@@ -25,7 +26,11 @@ class GuestJoinController: UIViewController {
     
     private func setupViews() {
         view.backgroundColor = UIColor(named: "bgMenuColor")
-        
+
+        homeButton = CustomButton(image: UIImage(systemName: "house.circle.fill"), asTemplate: true, shouldAnimatePress: true)
+        homeButton.imageView?.tintColor = .white
+        homeButton.delegate = self
+
         hostIDField = UITextField()
         hostIDField.backgroundColor = .white
         hostIDField.font = UIFont(name: "HelveticaNeue", size: 20)
@@ -39,9 +44,18 @@ class GuestJoinController: UIViewController {
     }
     
     private func layoutViews() {
+        let buttonPadding: CGFloat = 20
+        let buttonSize: CGFloat = 30
+        
+        view.addSubview(homeButton)
         view.addSubview(hostIDField)
         
         NSLayoutConstraint.activate([
+            homeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: buttonPadding),
+            view.safeAreaLayoutGuide.trailingAnchor.constraint(equalTo: homeButton.trailingAnchor, constant: buttonPadding),
+            homeButton.widthAnchor.constraint(equalToConstant: buttonSize),
+            homeButton.heightAnchor.constraint(equalToConstant: buttonSize),
+
             hostIDField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             hostIDField.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             hostIDField.widthAnchor.constraint(equalToConstant: 200),
@@ -59,7 +73,6 @@ class GuestJoinController: UIViewController {
         hostIDField.resignFirstResponder()
     }
 }
-
 
 
 // MARK: - TextFieldDelegate
@@ -80,5 +93,14 @@ extension GuestJoinController: UITextFieldDelegate {
         present(vc, animated: true)
         
         return true
+    }
+}
+
+
+// MARK: - CustomButtonDelegate
+
+extension GuestJoinController: CustomButtonDelegate {
+    func didTapButton(_ button: CustomButton) {
+        dismiss(animated: true)
     }
 }

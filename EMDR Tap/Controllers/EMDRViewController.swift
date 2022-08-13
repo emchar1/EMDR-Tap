@@ -7,12 +7,16 @@
 
 import UIKit
 
+
+
 class EMDRViewController: UIViewController {
     
     // MARK: - Properties
     
     private var tapManager: TapManager!
     private var homeButton: CustomButton!
+    private var hostIDLabel: UILabel!
+    var hostID: Int?
     
     
     // MARK: - Initialization
@@ -30,6 +34,12 @@ class EMDRViewController: UIViewController {
         
         homeButton = CustomButton(image: UIImage(systemName: "house.circle.fill"), asTemplate: true, shouldAnimatePress: true)
         homeButton.delegate = self
+        
+        hostIDLabel = UILabel()
+        hostIDLabel.text = hostID != nil ? "Host ID: " + String(format: "%04d", hostID!) : ""
+        hostIDLabel.font = UIFont(name: "Georgia-Bold", size: 20)
+        hostIDLabel.translatesAutoresizingMaskIntoConstraints = false
+        
     }
     
     private func layoutViews() {
@@ -37,12 +47,18 @@ class EMDRViewController: UIViewController {
         let buttonSize: CGFloat = 30
         
         view.addSubview(homeButton)
+        view.addSubview(hostIDLabel)
         
         NSLayoutConstraint.activate([
             homeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: buttonPadding),
             view.safeAreaLayoutGuide.trailingAnchor.constraint(equalTo: homeButton.trailingAnchor, constant: buttonPadding),
             homeButton.widthAnchor.constraint(equalToConstant: buttonSize),
-            homeButton.heightAnchor.constraint(equalToConstant: buttonSize)
+            homeButton.heightAnchor.constraint(equalToConstant: buttonSize),
+            
+            hostIDLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: buttonPadding),
+            hostIDLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: buttonPadding),
+            hostIDLabel.widthAnchor.constraint(equalToConstant: 200),
+            hostIDLabel.heightAnchor.constraint(equalToConstant: buttonSize)
         ])
     }
     
@@ -69,6 +85,8 @@ class EMDRViewController: UIViewController {
             
             if DataService.guestModel?.currentImage != currentImage {
                 DataService.guestModel?.currentImage = currentImage
+                
+                self.tapManager.updateIfGuest_BallImage()
             }
             
             if DataService.guestModel?.speed != Float(speed) {
@@ -79,6 +97,8 @@ class EMDRViewController: UIViewController {
             
             if DataService.guestModel?.duration != duration {
                 DataService.guestModel?.duration = duration
+                
+                self.tapManager.updateIfGuest_Duration()
             }
             
             DataService.guestModel = FIRModel(id: DataService.docRef.documentID,
@@ -86,7 +106,7 @@ class EMDRViewController: UIViewController {
                                               speed: Float(speed),
                                               duration: duration,
                                               currentImage: currentImage)
-            
+
         })
         
         print("Now go here")
@@ -100,6 +120,11 @@ extension EMDRViewController: CustomButtonDelegate {
     func didTapButton(_ button: CustomButton) {
         tapManager.didStopPlaying(restart: true)
         
-        dismiss(animated: true)
+        if DataService.sessionType == .guest {
+            self.presentingViewController?.presentingViewController?.dismiss(animated: true)
+        }
+        else {
+            dismiss(animated: true)
+        }
     }
 }

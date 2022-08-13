@@ -36,7 +36,7 @@ class BallView: UIView, CustomButtonDelegate {
 //    private var speed: TimeInterval = 1.0
 //    private var isPlaying = false
     
-    private var tapManagerControls: TapManagerControls!
+    var tapManagerControls: TapManagerControls!
     private var direction: BallDirection = .right
     private var timer: Timer?
     private var superView: UIView!
@@ -100,6 +100,10 @@ class BallView: UIView, CustomButtonDelegate {
         return tapManagerControls.currentImage
     }
     
+    func setBallImage(_ currentImage: Int) {
+        ballButton.setImage(ballImages[currentImage]?.withRenderingMode((currentImage >= ballImages.count - 1) ? .alwaysOriginal : .alwaysTemplate), for: .normal)
+    }
+    
     func startPlaying(speed: TimeInterval, restart: Bool = true) {
         tapManagerControls.speed = Float(speed)
         tapManagerControls.isPlaying = true
@@ -154,7 +158,7 @@ extension BallView {
     func didTapButton(_ sender: CustomButton) {
         tapManagerControls.currentImage = tapManagerControls.currentImage >= ballImages.count - 1 ? 0 : tapManagerControls.currentImage + 1
         
-        ballButton.setImage(ballImages[tapManagerControls.currentImage]?.withRenderingMode((tapManagerControls.currentImage >= ballImages.count - 1) ? .alwaysOriginal : .alwaysTemplate), for: .normal)
+        setBallImage(tapManagerControls.currentImage)
      
         UserDefaults.standard.set(tapManagerControls.currentImage, forKey: "BallImage")
         

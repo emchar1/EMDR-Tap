@@ -124,6 +124,7 @@ extension MainMenuController: MenuButtonDelegate {
             DataService.setSessionID(Int.random(in: 0...9998))
             
             let vc = EMDRViewController()
+            vc.hostID = DataService.sessionID
             present(vc, animated: true)
         case "Join Session":
             DataService.sessionType = .guest

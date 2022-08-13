@@ -24,7 +24,7 @@ class SettingsView: UIView, CustomButtonDelegate {
     private let dialPaddingTop: CGFloat = 20
     private var isExpanded = true
     
-    private var tapManagerControls: TapManagerControls!
+    var tapManagerControls: TapManagerControls!
 //    private var speed: Float!
 //    private var duration: TimeInterval!
 

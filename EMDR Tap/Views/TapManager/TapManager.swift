@@ -10,27 +10,19 @@ import UIKit
 class TapManager {
 
     // MARK: - Properties
-    
-    private var controls: TapManagerControls!
-    
+        
     private let timerInterval: TimeInterval = 1.0
     private var timer: Timer?
     private var superView: UIView!
     private var ballView: BallView!
     private var settingsView: SettingsView!
+    private var controls: TapManagerControls!
 
     private var startTime: TimeInterval = Date.timeIntervalSinceReferenceDate
     private var currentTime: TimeInterval { Date.timeIntervalSinceReferenceDate }
     private var elapsedTime: TimeInterval { currentTime - startTime }
     
     
-//    //Controls
-//    private var controlIsPlaying: Bool!
-//    private var controlSpeed: Float!
-//    private var controlDuration: TimeInterval!
-//    private var controlCurrentImage: Int!
-    
-
     // MARK: - Initialization
 
     init(in superView: UIView) {
@@ -120,7 +112,7 @@ class TapManager {
 
     func updateIfGuest_StartStop() {
         guard DataService.sessionType == .guest, let model = DataService.guestModel else { return }
-        print("model.isPlaying: \(model.isPlaying)")
+
         if !model.isPlaying {
             ballView.stopPlaying()
         }
@@ -141,17 +133,20 @@ class TapManager {
         }
     }
     
-//    func updatIfGuest_Duration() {
-//        guard DataService.sessionType == .guest, let model = DataService.guestModel else { return }
-//
-//    }
+    func updateIfGuest_Duration() {
+        guard DataService.sessionType == .guest, let model = DataService.guestModel else { return }
+
+        settingsView.tapManagerControls.duration = model.duration
+    }
     
     
-//    func updateIfGuest_BallImage() {
-//        guard DataService.sessionType == .guest, let model = DataService.guestModel else { return }
-//
-//        
-//    }
+    func updateIfGuest_BallImage() {
+        guard DataService.sessionType == .guest, let model = DataService.guestModel else { return }
+
+        ballView.tapManagerControls.currentImage = model.currentImage
+                
+        ballView.setBallImage(model.currentImage)
+    }
 }
 
 

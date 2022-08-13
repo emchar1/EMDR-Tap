@@ -66,10 +66,10 @@ class TapManager {
                                           currentImage: currentImageValue)
         }
 
-        ballView = BallView(in: superView)
+        ballView = BallView(in: superView, tapManagerControls: controls)
         ballView.translatesAutoresizingMaskIntoConstraints = false
 
-        settingsView = SettingsView(in: superView)
+        settingsView = SettingsView(in: superView, tapManagerControls: controls)
         settingsView.translatesAutoresizingMaskIntoConstraints = false
 
         //These MUST appear last!

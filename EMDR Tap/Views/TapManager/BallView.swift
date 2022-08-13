@@ -32,25 +32,28 @@ class BallView: UIView, CustomButtonDelegate {
                                           UIImage(systemName: "atom"),
                                           UIImage(systemName: "face.smiling"),
                                           UIImage(named: "EMDR-warren")]
-    private var currentImage = UserDefaults.standard.integer(forKey: "BallImage")
-    private var speed: TimeInterval = 1.0
+//    private var currentImage = UserDefaults.standard.integer(forKey: "BallImage")
+//    private var speed: TimeInterval = 1.0
+//    private var isPlaying = false
+    
+    private var tapManagerControls: TapManagerControls!
     private var direction: BallDirection = .right
-    private var isPlaying = false
-
     private var timer: Timer?
     private var superView: UIView!
     private var ballButton: CustomButton!
     private var centerXConstraint: NSLayoutConstraint!
+    
     
     weak var delegate: BallViewDelegate?
 
     
     // MARK: - Initialization
     
-    init(in superView: UIView) {
+    init(in superView: UIView, tapManagerControls: TapManagerControls) {
         super.init(frame: .zero)
         
         self.superView = superView
+        self.tapManagerControls = tapManagerControls
         
         setupViews()
         layoutViews()
@@ -63,7 +66,9 @@ class BallView: UIView, CustomButtonDelegate {
     private func setupViews() {
         timer = Timer()
         
-        ballButton = CustomButton(image: ballImages[currentImage], asTemplate: (currentImage >= ballImages.count - 1 ? false : true), shouldAnimatePress: true)
+        ballButton = CustomButton(image: ballImages[tapManagerControls.currentImage],
+                                  asTemplate: (tapManagerControls.currentImage >= ballImages.count - 1 ? false : true),
+                                  shouldAnimatePress: true)
         ballButton.isUserInteractionEnabled = DataService.sessionType != .guest ? true : false
         
         if DataService.sessionType != .guest {
@@ -88,16 +93,16 @@ class BallView: UIView, CustomButtonDelegate {
     // MARK: - Helper Functions
     
     func getIsPlaying() -> Bool {
-        return isPlaying
+        return tapManagerControls.isPlaying
     }
     
     func getCurrentImage() -> Int {
-        return currentImage
+        return tapManagerControls.currentImage
     }
     
     func startPlaying(speed: TimeInterval, restart: Bool = true) {
-        self.speed = speed
-        isPlaying = true
+        tapManagerControls.speed = Float(speed)
+        tapManagerControls.isPlaying = true
 
         timer = Timer.scheduledTimer(timeInterval: speed, target: self, selector: #selector(timerAction), userInfo: nil, repeats: true)
 
@@ -105,7 +110,7 @@ class BallView: UIView, CustomButtonDelegate {
     }
     
     func stopPlaying(restart: Bool = true) {
-        isPlaying = false
+        tapManagerControls.isPlaying = false
         
         if restart {
             direction = .right
@@ -130,7 +135,7 @@ class BallView: UIView, CustomButtonDelegate {
         centerXConstraint.isActive = false
         centerXConstraint.isActive = true
                 
-        UIView.animate(withDuration: speed, delay: 0, options: .curveEaseInOut, animations: {
+        UIView.animate(withDuration: TimeInterval(tapManagerControls.speed), delay: 0, options: .curveEaseInOut, animations: {
             self.superView.layoutIfNeeded()
         }, completion: completion)
     }
@@ -147,12 +152,11 @@ class BallView: UIView, CustomButtonDelegate {
 
 extension BallView {
     func didTapButton(_ sender: CustomButton) {
-        currentImage = currentImage >= ballImages.count - 1 ? 0 : currentImage + 1
+        tapManagerControls.currentImage = tapManagerControls.currentImage >= ballImages.count - 1 ? 0 : tapManagerControls.currentImage + 1
         
-        ballButton.setImage(ballImages[currentImage]?.withRenderingMode((currentImage >= ballImages.count - 1) ? .alwaysOriginal : .alwaysTemplate),
-                            for: .normal)
+        ballButton.setImage(ballImages[tapManagerControls.currentImage]?.withRenderingMode((tapManagerControls.currentImage >= ballImages.count - 1) ? .alwaysOriginal : .alwaysTemplate), for: .normal)
      
-        UserDefaults.standard.set(currentImage, forKey: "BallImage")
+        UserDefaults.standard.set(tapManagerControls.currentImage, forKey: "BallImage")
         
         delegate?.didUpdateCurrentImage()
     }

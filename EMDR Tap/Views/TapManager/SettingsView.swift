@@ -24,8 +24,9 @@ class SettingsView: UIView, CustomButtonDelegate {
     private let dialPaddingTop: CGFloat = 20
     private var isExpanded = true
     
-    private var speed: Float!
-    private var duration: TimeInterval!
+    private var tapManagerControls: TapManagerControls!
+//    private var speed: Float!
+//    private var duration: TimeInterval!
 
     private var settingsButton: CustomButton!
     private var speedSlider: UISlider!
@@ -42,10 +43,11 @@ class SettingsView: UIView, CustomButtonDelegate {
     
     // MARK: - Initialization
     
-    init(in superView: UIView) {
+    init(in superView: UIView, tapManagerControls: TapManagerControls) {
         super.init(frame: .zero)
         
         self.superView = superView
+        self.tapManagerControls = tapManagerControls
         
         setupViews()
         layoutViews()
@@ -69,7 +71,7 @@ class SettingsView: UIView, CustomButtonDelegate {
         playButton.delegate = self
         
         speedSlider = UISlider()
-        speedSlider.value = UserDefaults.standard.object(forKey: "SliderValue") as? Float ?? 0.5
+        speedSlider.value = SettingsView.getSliderValueForSpeed(tapManagerControls.speed)//UserDefaults.standard.object(forKey: "SliderValue") as? Float ?? 0.5
         speedSlider.isContinuous = false
         speedSlider.tintColor = UIColor(named: "buttonColor")
         speedSlider.thumbTintColor = UIColor(named: "buttonColor")
@@ -77,7 +79,7 @@ class SettingsView: UIView, CustomButtonDelegate {
         speedSlider.translatesAutoresizingMaskIntoConstraints = false
         
         durationControl = UISegmentedControl(items: ["1 min", "5 mins", "∞"])
-        durationControl.selectedSegmentIndex = UserDefaults.standard.integer(forKey: "SegmentedControlIndex")
+        durationControl.selectedSegmentIndex = SettingsView.getSelectedSegmentForDuration(tapManagerControls.duration)//UserDefaults.standard.integer(forKey: "SegmentedControlIndex")
         durationControl.setTitleTextAttributes([.foregroundColor: UIColor(named: "buttonColor") ?? UIColor.label], for: .normal)
         durationControl.addTarget(self, action: #selector(segmentedControlDidChange(_:)), for: .valueChanged)
         durationControl.translatesAutoresizingMaskIntoConstraints = false
@@ -147,11 +149,11 @@ class SettingsView: UIView, CustomButtonDelegate {
     }
     
     private func setSpeed() {
-        speed = SettingsView.getSpeedForSliderValue(speedSlider.value)
+        tapManagerControls.speed = SettingsView.getSpeedForSliderValue(speedSlider.value)
     }
     
     private func setDuration() {
-        duration = SettingsView.getDurationForSelectedSegment(durationControl.selectedSegmentIndex)
+        tapManagerControls.duration = SettingsView.getDurationForSelectedSegment(durationControl.selectedSegmentIndex)
     }
     
     static func getSpeedForSliderValue(_ value: Float) -> Float {
@@ -167,15 +169,28 @@ class SettingsView: UIView, CustomButtonDelegate {
         }
     }
     
+    static func getSliderValueForSpeed(_ speed: Float) -> Float {
+        return speedFactor - speed
+    }
+    
+    static func getSelectedSegmentForDuration(_ duration: TimeInterval) -> Int {
+        switch duration {
+        case 60: return 0
+        case 5 * 60: return 1
+        case SettingsView.infiniteDuration: return 2
+        default: return 0
+        }
+    }
+    
     
     // MARK: - Getters & Setters
 
     func getSpeed() -> Float {
-        return speed
+        return tapManagerControls.speed
     }
     
     func getDuration() -> TimeInterval {
-        return duration
+        return tapManagerControls.duration
     }
     
     func getViewHeight() -> CGFloat {

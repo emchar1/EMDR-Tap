@@ -20,7 +20,7 @@ class DigitLabel: UILabel {
         
         self.textValue = textValue
         
-        font = UIFont(name: "HelveticaNeue-Bold", size: 28)
+        font = .secondo?.withSize(28)
         text = textValue
         textAlignment = .center
         textColor = .black

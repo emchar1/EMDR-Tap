@@ -69,7 +69,7 @@ class LoginView: UIView {
         statusLabel = UILabel()
         statusLabel.text = "Enter Session ID"
         statusLabel.textColor = UIColor(named: "menuTint")
-        statusLabel.font = UIFont(name: "Georgia-Bold", size: 18)
+        statusLabel.font = .primo?.withSize(18)
         statusLabel.textAlignment = .center
         
         digitLabels = []

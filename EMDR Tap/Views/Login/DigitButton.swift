@@ -31,7 +31,7 @@ class DigitButton: UIButton {
         
         setTitle(textValue, for: .normal)
         setTitleColor(UIColor(named: "menuBG"), for: .normal)
-        titleLabel?.font = UIFont(name: "HelveticaNeue-Bold", size: 20)
+        titleLabel?.font = .secondo
         backgroundColor = UIColor(named: "menuTint")
         alpha = 0.5
         

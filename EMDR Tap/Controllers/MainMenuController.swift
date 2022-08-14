@@ -37,7 +37,7 @@ class MainMenuController: UIViewController {
         livingWithClarityLabel.text = "Living with Clarity"
         livingWithClarityLabel.textColor = UIColor(named: "menuTint")
         livingWithClarityLabel.textAlignment = .center
-        livingWithClarityLabel.font = UIFont(name: "HelveticaNeue", size: 32)
+        livingWithClarityLabel.font = .secondo?.withSize(32)
         livingWithClarityLabel.translatesAutoresizingMaskIntoConstraints = false
         
         hostButton = MenuButton(title: "Host Session")

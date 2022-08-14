@@ -38,7 +38,6 @@ class CustomButton: UIButton {
         layer.shadowRadius = buttonDepth
         layer.shadowOffset = CGSize(width: buttonDepth, height: buttonDepth)
         layer.shadowOpacity = 0.5
-        layer.shadowColor = UIColor.black.cgColor//(UIColor(named: "localShadow") ?? UIColor.systemGray).cgColor
 
         contentHorizontalAlignment = .fill
         contentVerticalAlignment = .fill

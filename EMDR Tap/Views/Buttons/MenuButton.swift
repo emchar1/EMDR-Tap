@@ -29,7 +29,7 @@ class MenuButton: UIButton {
         buttonTitle = title
 
         setTitle(buttonTitle, for: .normal)
-        titleLabel?.font = UIFont(name: "Georgia-Bold", size: 20)
+        titleLabel?.font = .primo
         setTitleColor(UIColor(named: "menuTint"), for: .normal)
         backgroundColor = .clear
         

@@ -29,6 +29,7 @@
 		EA10BFE7288BA5190062A5FF /* TapManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA10BFE6288BA5190062A5FF /* TapManager.swift */; };
 		EA10BFE9288C750D0062A5FF /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA10BFE8288C750D0062A5FF /* SettingsView.swift */; };
 		EA10BFEB288C87C30062A5FF /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA10BFEA288C87C30062A5FF /* CustomButton.swift */; };
+		EA72C7D228A94EC000E48AED /* Extension+UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA72C7D128A94EC000E48AED /* Extension+UIFont.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +59,7 @@
 		EA10BFE6288BA5190062A5FF /* TapManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapManager.swift; sourceTree = "<group>"; };
 		EA10BFE8288C750D0062A5FF /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		EA10BFEA288C87C30062A5FF /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		EA72C7D128A94EC000E48AED /* Extension+UIFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIFont.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +95,7 @@
 			isa = PBXGroup;
 			children = (
 				EA00533F28A62FD100A98258 /* Extension+UITextField.swift */,
+				EA72C7D128A94EC000E48AED /* Extension+UIFont.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -325,6 +328,7 @@
 				EA10BFE7288BA5190062A5FF /* TapManager.swift in Sources */,
 				EA00534728A8369F00A98258 /* LoginView.swift in Sources */,
 				EA10BFE5288BA4510062A5FF /* BallView.swift in Sources */,
+				EA72C7D228A94EC000E48AED /* Extension+UIFont.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

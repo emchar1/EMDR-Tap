@@ -51,7 +51,7 @@ class EMDRViewController: UIViewController {
         
         hostIDLabel = UILabel()
         hostIDLabel.text = hostID != nil ? "Host ID: " + String(format: "%04d", hostID!) : ""
-        hostIDLabel.font = UIFont(name: "Georgia-Bold", size: 20)
+        hostIDLabel.font = .primo
         hostIDLabel.translatesAutoresizingMaskIntoConstraints = false
 
         switch DataService.sessionType {

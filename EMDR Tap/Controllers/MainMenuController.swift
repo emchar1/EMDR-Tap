@@ -31,11 +31,11 @@ class MainMenuController: UIViewController {
     }
     
     private func setupViews() {
-        view.backgroundColor = UIColor(named: "bgMenuColor")
+        view.backgroundColor = UIColor(named: "menuBG")
         
         livingWithClarityLabel = UILabel()
         livingWithClarityLabel.text = "Living with Clarity"
-        livingWithClarityLabel.textColor = UIColor(named: "buttonMenuColor")
+        livingWithClarityLabel.textColor = UIColor(named: "menuTint")
         livingWithClarityLabel.textAlignment = .center
         livingWithClarityLabel.font = UIFont(name: "HelveticaNeue", size: 32)
         livingWithClarityLabel.translatesAutoresizingMaskIntoConstraints = false

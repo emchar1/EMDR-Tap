@@ -26,14 +26,14 @@ class GuestJoinController: UIViewController {
     }
     
     private func setupViews() {
-        view.backgroundColor = UIColor(named: "bgMenuColor")
+        view.backgroundColor = UIColor(named: "menuBG")
 
         homeButton = CustomButton(image: UIImage(systemName: "house.circle.fill"), asTemplate: true, shouldAnimatePress: true)
-        homeButton.imageView?.tintColor = .white
+        homeButton.imageView?.tintColor = UIColor(named: "menuTint")
         homeButton.delegate = self
 
         hostIDField = UITextField()
-        hostIDField.backgroundColor = .white
+        hostIDField.backgroundColor = UIColor(named: "menuTint")
         hostIDField.font = UIFont(name: "HelveticaNeue", size: 20)
         hostIDField.placeholder = "Enter Session ID"
         hostIDField.borderStyle = .roundedRect

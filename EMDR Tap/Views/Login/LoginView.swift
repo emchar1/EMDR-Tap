@@ -68,7 +68,7 @@ class LoginView: UIView {
         
         statusLabel = UILabel()
         statusLabel.text = "Enter Session ID"
-        statusLabel.textColor = .white
+        statusLabel.textColor = UIColor(named: "menuTint")
         statusLabel.font = UIFont(name: "Georgia-Bold", size: 18)
         statusLabel.textAlignment = .center
         
@@ -158,10 +158,10 @@ class LoginView: UIView {
     func updateStatus(_ status: String) {
         statusLabel.text = status
         statusLabel.textColor = .systemRed
-        statusLabel.alpha = 1.0
+        statusLabel.alpha = 1
         
-        UIView.animate(withDuration: 0.5, delay: 2.0, options: [], animations: {
-            self.statusLabel.alpha = 0.0
+        UIView.animate(withDuration: 0.5, delay: 2, options: [], animations: {
+            self.statusLabel.alpha = 0
         }, completion: nil)
     }
 }
@@ -206,7 +206,7 @@ extension LoginView: DigitButtonDelegate {
                     self.digitLabels[i].setTextValue("")
                 }
                 
-                self.labelStack.alpha = 1.0
+                self.labelStack.alpha = 1
                 self.isUserInteractionEnabled = true
             })
         }

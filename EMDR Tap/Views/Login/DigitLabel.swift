@@ -24,8 +24,8 @@ class DigitLabel: UILabel {
         text = textValue
         textAlignment = .center
         textColor = .black
-        backgroundColor = .white
-        layer.borderColor = (UIColor(named: "bgMenuColor") ?? UIColor.black).withAlphaComponent(0.8).cgColor
+        backgroundColor = UIColor(named: "menuTint")
+        layer.borderColor = (UIColor(named: "menuBG") ?? UIColor.black).withAlphaComponent(0.8).cgColor
         layer.borderWidth = 4
         layer.cornerRadius = 8
         clipsToBounds = true

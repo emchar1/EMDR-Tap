@@ -30,11 +30,11 @@ class MenuButton: UIButton {
 
         setTitle(buttonTitle, for: .normal)
         titleLabel?.font = UIFont(name: "Georgia-Bold", size: 20)
-        setTitleColor(UIColor(named: "buttonMenuColor"), for: .normal)
+        setTitleColor(UIColor(named: "menuTint"), for: .normal)
         backgroundColor = .clear
         
         layer.borderWidth = 4
-        layer.borderColor = UIColor(named: "buttonMenuColor")!.cgColor
+        layer.borderColor = UIColor(named: "menuTint")!.cgColor
         layer.shadowOffset = CGSize(width: buttonDepth, height: buttonDepth)
         layer.shadowRadius = buttonDepth
         layer.shadowOpacity = 0.5

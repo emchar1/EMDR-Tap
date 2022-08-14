@@ -30,14 +30,15 @@ class DigitButton: UIButton {
         self.textValue = textValue
         
         setTitle(textValue, for: .normal)
-        setTitleColor(UIColor(named: "bgMenuColor"), for: .normal)
-        backgroundColor = .white
-        alpha = 0.75
+        setTitleColor(UIColor(named: "menuBG"), for: .normal)
+        titleLabel?.font = UIFont(name: "HelveticaNeue-Bold", size: 20)
+        backgroundColor = UIColor(named: "menuTint")
+        alpha = 0.5
         
         layer.cornerRadius = buttonSize / 2
         layer.shadowOffset = CGSize(width: buttonDepth, height: buttonDepth)
         layer.shadowRadius = buttonDepth
-        layer.shadowOpacity = 0.25
+        layer.shadowOpacity = 0.5
         clipsToBounds = true
         layer.masksToBounds = false
         
@@ -73,7 +74,7 @@ class DigitButton: UIButton {
     private func animateTouchUp(completion: ((Bool) -> ())?) {
         UIView.animate(withDuration: 0.1, delay: 0, options: [.curveEaseInOut, .allowUserInteraction], animations: {
             self.transform = CGAffineTransform(translationX: 0, y: 0)
-            self.layer.shadowOpacity = 0.25
+            self.layer.shadowOpacity = 0.5
         }, completion: completion)
     }
 }

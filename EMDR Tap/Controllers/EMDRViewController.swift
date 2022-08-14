@@ -51,10 +51,16 @@ class EMDRViewController: UIViewController {
         
         hostIDLabel = UILabel()
         hostIDLabel.text = hostID != nil ? "Host ID: " + String(format: "%04d", hostID!) : ""
-        hostIDLabel.textColor = UIColor(named: "buttonColor")
         hostIDLabel.font = UIFont(name: "Georgia-Bold", size: 20)
         hostIDLabel.translatesAutoresizingMaskIntoConstraints = false
-        
+
+        switch DataService.sessionType {
+        case .guest: hostIDLabel.textColor = UIColor(named: "guestTint")
+        case .host: hostIDLabel.textColor = UIColor(named: "hostTint")
+        default: hostIDLabel.textColor = UIColor(named: "localTint")
+
+        }
+
     }
         
     private func layoutViews() {

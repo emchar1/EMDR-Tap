@@ -26,14 +26,19 @@ class CustomButton: UIButton {
         super.init(frame: .zero)
         
         self.shouldAnimatePress = shouldAnimatePress
-        
+                
+        switch DataService.sessionType {
+        case .guest: tintColor = UIColor(named: "guestTint")
+        case .host: tintColor = UIColor(named: "hostTint")
+        default: tintColor = UIColor(named: "localTint")
+        }
+
         setImage(image?.withRenderingMode(asTemplate ? .alwaysTemplate : .alwaysOriginal), for: .normal)
-        tintColor = UIColor(named: "buttonColor")
 
         layer.shadowRadius = buttonDepth
         layer.shadowOffset = CGSize(width: buttonDepth, height: buttonDepth)
         layer.shadowOpacity = 0.5
-        layer.shadowColor = (UIColor(named: "shadowColor") ?? UIColor.systemGray).cgColor
+        layer.shadowColor = UIColor.black.cgColor//(UIColor(named: "localShadow") ?? UIColor.systemGray).cgColor
 
         contentHorizontalAlignment = .fill
         contentVerticalAlignment = .fill

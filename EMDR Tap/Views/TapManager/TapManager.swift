@@ -11,7 +11,7 @@ class TapManager {
 
     // MARK: - Properties
         
-    private let timerInterval: TimeInterval = 1.0
+    private let timerInterval: TimeInterval = 1
     private var timer: Timer?
     private var superView: UIView!
     private var ballView: BallView!
@@ -36,7 +36,11 @@ class TapManager {
     private func setupViews() {
         timer = Timer()
         
-        self.superView.backgroundColor = UIColor(named: "bgColor")
+        switch DataService.sessionType {
+        case .guest: self.superView.backgroundColor = UIColor(named: "guestBG")
+        case .host: self.superView.backgroundColor = UIColor(named: "hostBG")
+        default: self.superView.backgroundColor = UIColor(named: "localBG")
+        }
         
         if DataService.sessionType == .guest, let model = DataService.guestModel {
             controls = TapManagerControls(isPlaying: model.isPlaying, speed: model.speed, duration: model.duration, currentImage: model.currentImage)

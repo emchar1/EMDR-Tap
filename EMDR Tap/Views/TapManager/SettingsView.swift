@@ -57,7 +57,7 @@ class SettingsView: UIView, CustomButtonDelegate {
     }
     
     private func setupViews() {
-        backgroundColor = UIColor(named: "bgSettingsColor")?.withAlphaComponent(0.2)
+        backgroundColor = UIColor(named: "settingsBG")?.withAlphaComponent(0.2)
         layer.cornerRadius = 20
         clipsToBounds = true
         
@@ -66,22 +66,34 @@ class SettingsView: UIView, CustomButtonDelegate {
         settingsButton.delegate = self
         
         playButton = CustomButton(image: UIImage(systemName: "play.fill"))
-        playButton.tintColor = UIColor(named: "playColor")
+        playButton.tintColor = UIColor(named: "settingsPlay")
         playButton.delegate = self
         
         speedSlider = UISlider()
-        speedSlider.value = SettingsView.getSliderValueForSpeed(tapManagerControls.speed)//UserDefaults.standard.object(forKey: "SliderValue") as? Float ?? 0.5
+        speedSlider.value = SettingsView.getSliderValueForSpeed(tapManagerControls.speed)
         speedSlider.isContinuous = false
-        speedSlider.tintColor = UIColor(named: "buttonColor")
-        speedSlider.thumbTintColor = UIColor(named: "buttonColor")
         speedSlider.addTarget(self, action: #selector(sliderDidChange(_:)), for: .valueChanged)
         speedSlider.translatesAutoresizingMaskIntoConstraints = false
         
         durationControl = UISegmentedControl(items: ["1 min", "5 mins", "∞"])
-        durationControl.selectedSegmentIndex = SettingsView.getSelectedSegmentForDuration(tapManagerControls.duration)//UserDefaults.standard.integer(forKey: "SegmentedControlIndex")
-        durationControl.setTitleTextAttributes([.foregroundColor: UIColor(named: "buttonColor") ?? UIColor.label], for: .normal)
+        durationControl.selectedSegmentIndex = SettingsView.getSelectedSegmentForDuration(tapManagerControls.duration)
         durationControl.addTarget(self, action: #selector(segmentedControlDidChange(_:)), for: .valueChanged)
         durationControl.translatesAutoresizingMaskIntoConstraints = false
+        
+        switch DataService.sessionType {
+        case .guest:
+            speedSlider.tintColor = UIColor(named: "guestTint")
+            speedSlider.thumbTintColor = UIColor(named: "guestTint")
+            durationControl.setTitleTextAttributes([.foregroundColor: UIColor(named: "guestTint") ?? UIColor.label], for: .normal)
+        case .host:
+            speedSlider.tintColor = UIColor(named: "hostTint")
+            speedSlider.thumbTintColor = UIColor(named: "hostTint")
+            durationControl.setTitleTextAttributes([.foregroundColor: UIColor(named: "hostTint") ?? UIColor.label], for: .normal)
+        default:
+            speedSlider.tintColor = UIColor(named: "localTint")
+            speedSlider.thumbTintColor = UIColor(named: "localTint")
+            durationControl.setTitleTextAttributes([.foregroundColor: UIColor(named: "localTint") ?? UIColor.label], for: .normal)
+        }
 
         //MUST go last!
         setSpeed()
@@ -123,11 +135,11 @@ class SettingsView: UIView, CustomButtonDelegate {
     func updatePlayButton(isPlaying: Bool) {
         if isPlaying {
             playButton.setImage(UIImage(systemName: "stop.fill"), for: .normal)
-            playButton.tintColor = UIColor(named: "stopColor")
+            playButton.tintColor = UIColor(named: "settingsStop")
         }
         else {
             playButton.setImage(UIImage(systemName: "play.fill"), for: .normal)
-            playButton.tintColor = UIColor(named: "playColor")
+            playButton.tintColor = UIColor(named: "settingsPlay")
         }
     }
     
@@ -208,12 +220,12 @@ extension SettingsView {
                 updateConstraints(shouldShow: false)
                 
                 UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseIn, animations: { [unowned self] in
-                    backgroundColor = UIColor(named: "bgSettingsColor")?.withAlphaComponent(0.0)
+                    backgroundColor = UIColor(named: "settingsBG")?.withAlphaComponent(0)
                     settingsButton.imageView?.transform = CGAffineTransform(rotationAngle: -2 * .pi)
-                    settingsButton.alpha = 0.25
-                    playButton.alpha = 0.0
-                    speedSlider.alpha = 0.0
-                    durationControl.alpha = 0.0
+                    settingsButton.alpha = 0.5
+                    playButton.alpha = 0
+                    speedSlider.alpha = 0
+                    durationControl.alpha = 0
                     
                     layoutIfNeeded()
                 }, completion: nil)
@@ -222,12 +234,12 @@ extension SettingsView {
                 updateConstraints(shouldShow: true)
 
                 UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: { [unowned self] in
-                    backgroundColor = UIColor(named: "bgSettingsColor")?.withAlphaComponent(0.2)
+                    backgroundColor = UIColor(named: "settingsBG")?.withAlphaComponent(0.2)
                     settingsButton.imageView?.transform = CGAffineTransform(rotationAngle: .pi)
-                    settingsButton.alpha = 1.0
-                    playButton.alpha = 1.0
-                    speedSlider.alpha = 1.0
-                    durationControl.alpha = 1.0
+                    settingsButton.alpha = 1
+                    playButton.alpha = 1
+                    speedSlider.alpha = 1
+                    durationControl.alpha = 1
                     
                     layoutIfNeeded()
                 }, completion: nil)

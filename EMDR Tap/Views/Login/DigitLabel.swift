@@ -45,7 +45,7 @@ class DigitLabel: UILabel {
         
         guard withAnimation else { return }
         
-        transform = CGAffineTransform(rotationAngle: .pi / 24)
+        transform = CGAffineTransform(rotationAngle: .pi / 36)
         
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.3, initialSpringVelocity: 1, options: [.curveEaseInOut], animations: {
             self.transform = CGAffineTransform(rotationAngle: 0)

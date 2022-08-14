@@ -67,7 +67,6 @@ class BallView: UIView, CustomButtonDelegate {
                                   shouldAnimatePress: true)
         ballButton.isUserInteractionEnabled = DataService.sessionType != .guest ? true : false
 
-        // FIXME: - Does this work???
         if tapManagerControls.isPlaying {
             startPlaying(speed: TimeInterval(tapManagerControls.speed))
         }

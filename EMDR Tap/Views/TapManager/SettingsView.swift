@@ -19,7 +19,7 @@ class SettingsView: UIView, CustomButtonDelegate {
     
     static let infiniteDuration: TimeInterval = 0
     static let speedFactor: Float = 1.5
-    static let durations: [TimeInterval] = [10, 5 * 60, SettingsView.infiniteDuration]
+    static let durations: [TimeInterval] = [60, 5 * 60, SettingsView.infiniteDuration]
     
     private let dialSize: CGFloat = 40
     private let dialPadding: CGFloat = 50

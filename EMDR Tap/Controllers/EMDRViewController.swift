@@ -83,7 +83,8 @@ class EMDRViewController: UIViewController {
         
         DataService.listener = DataService.docRef.addSnapshotListener({ (snapshot, error) in
             guard error == nil else { return print("Error getting docs: \(error!)") }
-            guard let snapshot = snapshot, let data = snapshot.data() else { return }
+            guard let snapshot = snapshot else { return print("Snapshot is nil.") }
+            guard let data = snapshot.data() else { return print("Couldn't find a matching session ID: \(DataService.sessionID ?? 0)") }
             
             guard let isPlaying = data["isPlaying"] as? Bool,
                   let currentImage = data["currentImage"] as? Int,

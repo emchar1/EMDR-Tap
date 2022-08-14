@@ -38,7 +38,6 @@ class TapManager {
         
         self.superView.backgroundColor = UIColor(named: "bgColor")
         
-        // FIXME: - How to make use of controls based on sessionType???
         if DataService.sessionType == .guest, let model = DataService.guestModel {
             controls = TapManagerControls(isPlaying: model.isPlaying, speed: model.speed, duration: model.duration, currentImage: model.currentImage)
             print("Setting up controls for GUEST in TapManager.")
@@ -78,10 +77,7 @@ class TapManager {
 
         
         //Only add the Settings control if it's NOT a guest
-//        guard DataService.sessionType != .guest else { return }
-        if DataService.sessionType == .guest {
-            settingsView.isUserInteractionEnabled = false
-        }
+        guard DataService.sessionType != .guest else { return }
             
         superView.addSubview(settingsView)
             

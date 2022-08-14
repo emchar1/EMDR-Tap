@@ -18,6 +18,8 @@
 		EA00534028A62FD100A98258 /* Extension+UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA00533F28A62FD100A98258 /* Extension+UITextField.swift */; };
 		EA00534328A6C8DE00A98258 /* TapManagerControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA00534228A6C8DE00A98258 /* TapManagerControls.swift */; };
 		EA00534728A8369F00A98258 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA00534628A8369F00A98258 /* LoginView.swift */; };
+		EA00534928A840DA00A98258 /* DigitButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA00534828A840DA00A98258 /* DigitButton.swift */; };
+		EA00534C28A8482800A98258 /* DigitLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA00534B28A8482800A98258 /* DigitLabel.swift */; };
 		EA10BFCD288BA2D60062A5FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA10BFCC288BA2D60062A5FF /* AppDelegate.swift */; };
 		EA10BFCF288BA2D60062A5FF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA10BFCE288BA2D60062A5FF /* SceneDelegate.swift */; };
 		EA10BFD1288BA2D60062A5FF /* EMDRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA10BFD0288BA2D60062A5FF /* EMDRViewController.swift */; };
@@ -43,6 +45,8 @@
 		EA00533F28A62FD100A98258 /* Extension+UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UITextField.swift"; sourceTree = "<group>"; };
 		EA00534228A6C8DE00A98258 /* TapManagerControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapManagerControls.swift; sourceTree = "<group>"; };
 		EA00534628A8369F00A98258 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		EA00534828A840DA00A98258 /* DigitButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigitButton.swift; sourceTree = "<group>"; };
+		EA00534B28A8482800A98258 /* DigitLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigitLabel.swift; sourceTree = "<group>"; };
 		EA10BFC9288BA2D60062A5FF /* EMDR Tap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EMDR Tap.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA10BFCC288BA2D60062A5FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EA10BFCE288BA2D60062A5FF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -113,6 +117,16 @@
 			path = Buttons;
 			sourceTree = "<group>";
 		};
+		EA00534A28A8481100A98258 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				EA00534628A8369F00A98258 /* LoginView.swift */,
+				EA00534828A840DA00A98258 /* DigitButton.swift */,
+				EA00534B28A8482800A98258 /* DigitLabel.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
 		EA10BFC0288BA2D60062A5FF = {
 			isa = PBXGroup;
 			children = (
@@ -163,7 +177,7 @@
 			children = (
 				EA00534428A72AA900A98258 /* TapManager */,
 				EA00534528A72ABA00A98258 /* Buttons */,
-				EA00534628A8369F00A98258 /* LoginView.swift */,
+				EA00534A28A8481100A98258 /* Login */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -293,7 +307,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA00534C28A8482800A98258 /* DigitLabel.swift in Sources */,
 				EA00533828A4702500A98258 /* SessionType.swift in Sources */,
+				EA00534928A840DA00A98258 /* DigitButton.swift in Sources */,
 				EA00534028A62FD100A98258 /* Extension+UITextField.swift in Sources */,
 				EA10BFD1288BA2D60062A5FF /* EMDRViewController.swift in Sources */,
 				EA00533228A237CD00A98258 /* MainMenuController.swift in Sources */,

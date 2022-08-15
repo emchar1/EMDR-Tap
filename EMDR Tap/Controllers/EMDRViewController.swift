@@ -25,6 +25,8 @@ class EMDRViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        AudioPlayer.playSound(filename: "NoSound")
+        
         if DataService.sessionType != .guest {
             //Set this up the usual way if not a guest
             setupViews()

@@ -138,6 +138,9 @@ class BallView: UIView, CustomButtonDelegate {
         animateBall(direction: direction, completion: nil)
 
         direction = direction == .right ? .left : .right
+        
+        UIImpactFeedbackGenerator(style: .soft).impactOccurred()
+        AudioPlayer.playSound(filename: "Tap", pan: direction)
     }
 }
 

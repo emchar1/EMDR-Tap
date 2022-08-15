@@ -181,7 +181,8 @@ extension TapManager: SettingsViewDelegate, BallViewDelegate {
 
     func playButtonTapped(_ button: CustomButton) {
         updateBallMovement(isPlaying: ballView.getIsPlaying(), speed: settingsView.getSpeed())
-        
+        updateElapsedLabel(duration: settingsView.getDuration())
+
         setFirebaseModelIfHost()
     }
         
@@ -192,7 +193,7 @@ extension TapManager: SettingsViewDelegate, BallViewDelegate {
     }
     
     func durationChanged(_ control: UISegmentedControl) {
-        updateElapsedLabel(duration: ballView.getIsPlaying() ? abs(round(settingsView.getDuration() - elapsedTime)) : settingsView.getDuration())
+        updateElapsedLabel(duration: ballView.getIsPlaying() ? getRemainingDuration() : settingsView.getDuration())
         
         setFirebaseModelIfHost()
     }
@@ -215,8 +216,6 @@ extension TapManager: SettingsViewDelegate, BallViewDelegate {
             timer?.invalidate()
         }
         
-        updateElapsedLabel(duration: settingsView.getDuration())
-
         print("Play stopped via TapManager")
     }
     
@@ -225,12 +224,13 @@ extension TapManager: SettingsViewDelegate, BallViewDelegate {
     }
     
     @objc private func timerAction() {
-        updateElapsedLabel(duration: abs(round(settingsView.getDuration() - elapsedTime)))
+        updateElapsedLabel(duration: getRemainingDuration())
 
         if !(settingsView.getDuration() == SettingsView.infiniteDuration || elapsedTime < settingsView.getDuration()) {
             ballView.stopPlaying()
             timer?.invalidate()
             settingsView.updatePlayButton(isPlaying: false)
+            updateElapsedLabel(duration: settingsView.getDuration())
 
             setFirebaseModelIfHost()
         }
@@ -252,5 +252,9 @@ extension TapManager: SettingsViewDelegate, BallViewDelegate {
 
         elapsedLabel.textColor = duration <= 5 ? .systemRed : .label
         elapsedLabel.text = "\(minutes)" + ":" + (seconds.count < 2 ? "0" + seconds : seconds)
+    }
+    
+    private func getRemainingDuration() -> TimeInterval {
+        return max(round(settingsView.getDuration() - elapsedTime), 0)
     }
 }

@@ -99,7 +99,7 @@ class BallView: UIView, CustomButtonDelegate {
     }
     
     func setBallImage(_ currentImage: Int) {
-        ballButton.setImage(ballImages[currentImage]?.withRenderingMode((currentImage >= ballImages.count - 1) ? .alwaysOriginal : .alwaysTemplate), for: .normal)
+        ballButton.setImage(ballImages[currentImage]?.withRenderingMode(.alwaysTemplate), for: .normal)
     }
     
     func startPlaying(speed: TimeInterval, restart: Bool = true) {

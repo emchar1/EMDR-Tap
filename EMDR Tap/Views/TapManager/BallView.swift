@@ -30,8 +30,7 @@ class BallView: UIView, CustomButtonDelegate {
                                           UIImage(systemName: "star.fill"),
                                           UIImage(systemName: "moon.fill"),
                                           UIImage(systemName: "atom"),
-                                          UIImage(systemName: "face.smiling"),
-                                          UIImage(named: "EMDR-warren")]
+                                          UIImage(systemName: "face.smiling")]
 
     private var direction: BallDirection = .right
     private var timer: Timer?
@@ -62,9 +61,7 @@ class BallView: UIView, CustomButtonDelegate {
     private func setupViews() {
         timer = Timer()
         
-        ballButton = CustomButton(image: ballImages[tapManagerControls.currentImage],
-                                  asTemplate: (tapManagerControls.currentImage >= ballImages.count - 1 ? false : true),
-                                  shouldAnimatePress: true)
+        ballButton = CustomButton(image: ballImages[tapManagerControls.currentImage], asTemplate: true, shouldAnimatePress: true)
         ballButton.isUserInteractionEnabled = DataService.sessionType != .guest ? true : false
 
         if tapManagerControls.isPlaying {

@@ -17,6 +17,7 @@ class TapManager {
     private var ballView: BallView!
     private var settingsView: SettingsView!
     private var controls: TapManagerControls!
+    private var elapsedLabel: UILabel!
 
     private var startTime: TimeInterval = Date.timeIntervalSinceReferenceDate
     private var currentTime: TimeInterval { Date.timeIntervalSinceReferenceDate }
@@ -63,8 +64,14 @@ class TapManager {
 
         settingsView = SettingsView(in: superView, tapManagerControls: controls)
         settingsView.translatesAutoresizingMaskIntoConstraints = false
+        
+        elapsedLabel = UILabel()
+        elapsedLabel.font = .secondo
+        elapsedLabel.textAlignment = .center
+        elapsedLabel.translatesAutoresizingMaskIntoConstraints = false
 
         //These MUST appear last!
+        updateElapsedLabel(duration: settingsView.getDuration())
         ballView.delegate = self
         settingsView.delegate = self
     }
@@ -84,12 +91,16 @@ class TapManager {
         guard DataService.sessionType != .guest else { return }
             
         superView.addSubview(settingsView)
+        superView.addSubview(elapsedLabel)
             
         NSLayoutConstraint.activate([
             settingsView.leadingAnchor.constraint(equalTo: superView.leadingAnchor),
             superView.trailingAnchor.constraint(equalTo: settingsView.trailingAnchor),
             superView.bottomAnchor.constraint(equalTo: settingsView.bottomAnchor),
-            settingsView.heightAnchor.constraint(equalToConstant: settingsView.getViewHeight())
+            settingsView.heightAnchor.constraint(equalToConstant: settingsView.getViewHeight()),
+            
+            elapsedLabel.centerXAnchor.constraint(equalTo: superView.centerXAnchor),
+            elapsedLabel.topAnchor.constraint(equalTo: superView.safeAreaLayoutGuide.topAnchor, constant: 20)
         ])
     }
     
@@ -181,6 +192,8 @@ extension TapManager: SettingsViewDelegate, BallViewDelegate {
     }
     
     func durationChanged(_ control: UISegmentedControl) {
+        updateElapsedLabel(duration: ballView.getIsPlaying() ? abs(round(settingsView.getDuration() - elapsedTime)) : settingsView.getDuration())
+        
         setFirebaseModelIfHost()
     }
     
@@ -201,6 +214,8 @@ extension TapManager: SettingsViewDelegate, BallViewDelegate {
         if restart {
             timer?.invalidate()
         }
+        
+        updateElapsedLabel(duration: settingsView.getDuration())
 
         print("Play stopped via TapManager")
     }
@@ -210,20 +225,32 @@ extension TapManager: SettingsViewDelegate, BallViewDelegate {
     }
     
     @objc private func timerAction() {
-        guard settingsView.getDuration() == SettingsView.infiniteDuration || elapsedTime < settingsView.getDuration() else {
+        updateElapsedLabel(duration: abs(round(settingsView.getDuration() - elapsedTime)))
+
+        if !(settingsView.getDuration() == SettingsView.infiniteDuration || elapsedTime < settingsView.getDuration()) {
             ballView.stopPlaying()
             timer?.invalidate()
             settingsView.updatePlayButton(isPlaying: false)
 
             setFirebaseModelIfHost()
+        }
+    }
+    
+    private func updateElapsedLabel(duration: TimeInterval) {
+        guard settingsView.getDuration() != SettingsView.infiniteDuration else {
+            elapsedLabel.text = "--:--"
+            elapsedLabel.textColor = .label
             return
         }
-        
         
         let numberFormatter = NumberFormatter()
         numberFormatter.numberStyle = .decimal
         numberFormatter.maximumFractionDigits = 0
 
-        print("\(numberFormatter.string(from: NSNumber(value: elapsedTime))!)/\(numberFormatter.string(from: NSNumber(value: settingsView.getDuration()))!)")
+        let minutes = numberFormatter.string(from: NSNumber(value: (duration / 60).rounded(.towardZero)))!
+        let seconds = numberFormatter.string(from: NSNumber(value: duration.truncatingRemainder(dividingBy: 60)))!
+
+        elapsedLabel.textColor = duration <= 5 ? .systemRed : .label
+        elapsedLabel.text = "\(minutes)" + ":" + (seconds.count < 2 ? "0" + seconds : seconds)
     }
 }

@@ -130,6 +130,21 @@ class SettingsView: UIView, CustomButtonDelegate {
     }
     
     
+    // MARK: - Getters & Setters
+
+    func getSpeed() -> Float {
+        return tapManagerControls.speed
+    }
+    
+    func getDuration() -> TimeInterval {
+        return tapManagerControls.duration
+    }
+    
+    func getViewHeight() -> CGFloat {
+        return dialSize + dialPadding + dialPaddingTop
+    }
+    
+    
     // MARK: - Helper Functions
     
     func updatePlayButton(isPlaying: Bool) {
@@ -140,6 +155,32 @@ class SettingsView: UIView, CustomButtonDelegate {
         else {
             playButton.setImage(UIImage(systemName: "play.fill"), for: .normal)
             playButton.tintColor = UIColor(named: "settingsPlay")
+        }
+    }
+    
+    static func getSpeedForSliderValue(_ value: Float) -> Float {
+        return speedFactor - value
+    }
+    
+    static func getSliderValueForSpeed(_ speed: Float) -> Float {
+        return speedFactor - speed
+    }
+
+    static func getDurationForSelectedSegment(_ value: Int) -> TimeInterval {
+        switch value {
+        case 0: return durations[0]
+        case 1: return durations[1]
+        case 2: return durations[2]
+        default: return -1
+        }
+    }
+    
+    static func getSelectedSegmentForDuration(_ duration: TimeInterval) -> Int {
+        switch duration {
+        case durations[0]: return 0
+        case durations[1]: return 1
+        case durations[2]: return 2
+        default: return 0
         }
     }
     
@@ -165,47 +206,6 @@ class SettingsView: UIView, CustomButtonDelegate {
     
     private func setDuration() {
         tapManagerControls.duration = SettingsView.getDurationForSelectedSegment(durationControl.selectedSegmentIndex)
-    }
-    
-    static func getSpeedForSliderValue(_ value: Float) -> Float {
-        return speedFactor - value
-    }
-    
-    static func getDurationForSelectedSegment(_ value: Int) -> TimeInterval {
-        switch value {
-        case 0: return durations[0]
-        case 1: return durations[1]
-        case 2: return durations[2]
-        default: return -1
-        }
-    }
-    
-    static func getSliderValueForSpeed(_ speed: Float) -> Float {
-        return speedFactor - speed
-    }
-    
-    static func getSelectedSegmentForDuration(_ duration: TimeInterval) -> Int {
-        switch duration {
-        case durations[0]: return 0
-        case durations[1]: return 1
-        case durations[2]: return 2
-        default: return 0
-        }
-    }
-    
-    
-    // MARK: - Getters & Setters
-
-    func getSpeed() -> Float {
-        return tapManagerControls.speed
-    }
-    
-    func getDuration() -> TimeInterval {
-        return tapManagerControls.duration
-    }
-    
-    func getViewHeight() -> CGFloat {
-        return dialSize + dialPadding + dialPaddingTop
     }
 }
     

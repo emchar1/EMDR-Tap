@@ -143,8 +143,7 @@ class EMDRViewController: UIViewController {
 
 extension EMDRViewController: CustomButtonDelegate {
     func didTapButton(_ button: CustomButton) {
-        tapManager.didStopPlaying(restart: true)
-        
+        tapManager.stopAllPlaying()
         DataService.guestModel = nil
         
         if DataService.sessionType == .guest {

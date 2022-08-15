@@ -153,6 +153,15 @@ class TapManager {
     
     // MARK: - Helper Functions
     
+    func stopAllPlaying() {
+        ballView.stopPlaying()
+        timer?.invalidate()
+        settingsView.updatePlayButton(isPlaying: false)
+        updateElapsedLabel(duration: settingsView.getDuration())
+
+        setFirebaseModelIfHost()
+    }
+    
     private func updateBallMovement(isPlaying: Bool, speed: Float) {
         if isPlaying {
             ballView.stopPlaying()
@@ -227,12 +236,7 @@ extension TapManager: SettingsViewDelegate, BallViewDelegate {
         updateElapsedLabel(duration: getRemainingDuration())
 
         if !(settingsView.getDuration() == SettingsView.infiniteDuration || elapsedTime < settingsView.getDuration()) {
-            ballView.stopPlaying()
-            timer?.invalidate()
-            settingsView.updatePlayButton(isPlaying: false)
-            updateElapsedLabel(duration: settingsView.getDuration())
-
-            setFirebaseModelIfHost()
+            stopAllPlaying()
         }
     }
     

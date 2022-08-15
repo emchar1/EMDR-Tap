@@ -88,7 +88,7 @@ class BallView: UIView, CustomButtonDelegate {
     }
     
     
-    // MARK: - Helper Functions
+    // MARK: - Getters & Setters
     
     func getIsPlaying() -> Bool {
         return tapManagerControls.isPlaying
@@ -101,6 +101,9 @@ class BallView: UIView, CustomButtonDelegate {
     func setBallImage(_ currentImage: Int) {
         ballButton.setImage(ballImages[currentImage]?.withRenderingMode(.alwaysTemplate), for: .normal)
     }
+    
+    
+    // MARK: - Helper Functions
     
     func startPlaying(speed: TimeInterval, restart: Bool = true) {
         tapManagerControls.speed = Float(speed)

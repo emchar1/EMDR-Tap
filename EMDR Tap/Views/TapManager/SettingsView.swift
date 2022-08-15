@@ -25,6 +25,7 @@ class SettingsView: UIView, CustomButtonDelegate {
     private let dialPadding: CGFloat = 50
     private let dialPaddingTop: CGFloat = 20
     private var isExpanded = true
+    var viewHeight: CGFloat { return dialSize + dialPadding + dialPaddingTop }
     
     private var superView: UIView!
     private var settingsButton: CustomButton!
@@ -130,23 +131,8 @@ class SettingsView: UIView, CustomButtonDelegate {
     }
     
     
-    // MARK: - Getters & Setters
-
-    func getSpeed() -> Float {
-        return tapManagerControls.speed
-    }
-    
-    func getDuration() -> TimeInterval {
-        return tapManagerControls.duration
-    }
-    
-    func getViewHeight() -> CGFloat {
-        return dialSize + dialPadding + dialPaddingTop
-    }
-    
-    
     // MARK: - Helper Functions
-    
+        
     func updatePlayButton(isPlaying: Bool) {
         if isPlaying {
             playButton.setImage(UIImage(systemName: "stop.fill"), for: .normal)

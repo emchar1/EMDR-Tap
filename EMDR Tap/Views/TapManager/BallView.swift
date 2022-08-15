@@ -87,23 +87,12 @@ class BallView: UIView, CustomButtonDelegate {
         ])
     }
     
-    
-    // MARK: - Getters & Setters
-    
-    func getIsPlaying() -> Bool {
-        return tapManagerControls.isPlaying
-    }
-    
-    func getCurrentImage() -> Int {
-        return tapManagerControls.currentImage
-    }
+        
+    // MARK: - Helper Functions
     
     func setBallImage(_ currentImage: Int) {
         ballButton.setImage(ballImages[currentImage]?.withRenderingMode(.alwaysTemplate), for: .normal)
     }
-    
-    
-    // MARK: - Helper Functions
     
     func startPlaying(speed: TimeInterval, restart: Bool = true) {
         tapManagerControls.speed = Float(speed)
@@ -126,7 +115,7 @@ class BallView: UIView, CustomButtonDelegate {
         
         delegate?.didStopPlaying(restart: restart)
     }
-    
+        
     private func animateBall(direction: BallDirection, completion: ((Bool) -> ())?) {
         switch direction {
         case .left:

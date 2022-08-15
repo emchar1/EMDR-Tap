@@ -71,7 +71,7 @@ class TapManager {
         elapsedLabel.translatesAutoresizingMaskIntoConstraints = false
 
         //These MUST appear last!
-        updateElapsedLabel(duration: settingsView.getDuration())
+        updateElapsedLabel(duration: settingsView.tapManagerControls.duration)
         ballView.delegate = self
         settingsView.delegate = self
     }
@@ -97,7 +97,7 @@ class TapManager {
             settingsView.leadingAnchor.constraint(equalTo: superView.leadingAnchor),
             superView.trailingAnchor.constraint(equalTo: settingsView.trailingAnchor),
             superView.bottomAnchor.constraint(equalTo: settingsView.bottomAnchor),
-            settingsView.heightAnchor.constraint(equalToConstant: settingsView.getViewHeight()),
+            settingsView.heightAnchor.constraint(equalToConstant: settingsView.viewHeight),
             
             elapsedLabel.centerXAnchor.constraint(equalTo: superView.centerXAnchor),
             elapsedLabel.topAnchor.constraint(equalTo: superView.safeAreaLayoutGuide.topAnchor, constant: 20)
@@ -111,10 +111,10 @@ class TapManager {
         
         do {
             try DataService.docRef.setData(from: FIRModel(id: DataService.docRef.documentID,
-                                                          isPlaying: ballView.getIsPlaying(),
-                                                          speed: settingsView.getSpeed(),
-                                                          duration: settingsView.getDuration(),
-                                                          currentImage: ballView.getCurrentImage()))
+                                                          isPlaying: ballView.tapManagerControls.isPlaying,
+                                                          speed: settingsView.tapManagerControls.speed,
+                                                          duration: settingsView.tapManagerControls.duration,
+                                                          currentImage: ballView.tapManagerControls.currentImage))
         } catch {
             print("Error writing to Firestore: \(error)")
         }
@@ -157,7 +157,7 @@ class TapManager {
         ballView.stopPlaying()
         timer?.invalidate()
         settingsView.updatePlayButton(isPlaying: false)
-        updateElapsedLabel(duration: settingsView.getDuration())
+        updateElapsedLabel(duration: settingsView.tapManagerControls.duration)
 
         setFirebaseModelIfHost()
     }
@@ -189,20 +189,20 @@ extension TapManager: SettingsViewDelegate, BallViewDelegate {
     // MARK: - SettingsViewDelegate
 
     func playButtonTapped(_ button: CustomButton) {
-        updateBallMovement(isPlaying: ballView.getIsPlaying(), speed: settingsView.getSpeed())
-        updateElapsedLabel(duration: settingsView.getDuration())
+        updateBallMovement(isPlaying: ballView.tapManagerControls.isPlaying, speed: settingsView.tapManagerControls.speed)
+        updateElapsedLabel(duration: settingsView.tapManagerControls.duration)
 
         setFirebaseModelIfHost()
     }
         
     func speedSliderChanged(_ slider: UISlider) {
-        updateSpeed(isPlaying: ballView.getIsPlaying(), speed: settingsView.getSpeed())
+        updateSpeed(isPlaying: ballView.tapManagerControls.isPlaying, speed: settingsView.tapManagerControls.speed)
         
         setFirebaseModelIfHost()
     }
     
     func durationChanged(_ control: UISegmentedControl) {
-        updateElapsedLabel(duration: ballView.getIsPlaying() ? getRemainingDuration() : settingsView.getDuration())
+        updateElapsedLabel(duration: ballView.tapManagerControls.isPlaying ? getRemainingDuration() : settingsView.tapManagerControls.duration)
         
         setFirebaseModelIfHost()
     }
@@ -235,13 +235,13 @@ extension TapManager: SettingsViewDelegate, BallViewDelegate {
     @objc private func timerAction() {
         updateElapsedLabel(duration: getRemainingDuration())
 
-        if !(settingsView.getDuration() == SettingsView.infiniteDuration || elapsedTime < settingsView.getDuration()) {
+        if !(settingsView.tapManagerControls.duration == SettingsView.infiniteDuration || elapsedTime < settingsView.tapManagerControls.duration) {
             stopAllPlaying()
         }
     }
     
     private func updateElapsedLabel(duration: TimeInterval) {
-        guard settingsView.getDuration() != SettingsView.infiniteDuration else {
+        guard settingsView.tapManagerControls.duration != SettingsView.infiniteDuration else {
             elapsedLabel.text = "--:--"
             elapsedLabel.textColor = .label
             return
@@ -259,6 +259,6 @@ extension TapManager: SettingsViewDelegate, BallViewDelegate {
     }
     
     private func getRemainingDuration() -> TimeInterval {
-        return max(round(settingsView.getDuration() - elapsedTime), 0)
+        return max(round(settingsView.tapManagerControls.duration - elapsedTime), 0)
     }
 }

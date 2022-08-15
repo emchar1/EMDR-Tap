@@ -104,6 +104,7 @@ class TapManager {
         ])
     }
     
+    
     // MARK: - Firestore
     
     private func setFirebaseModelIfHost() {
@@ -183,11 +184,9 @@ class TapManager {
 }
 
 
+// MARK: - SettingsViewDelegate
 
-extension TapManager: SettingsViewDelegate, BallViewDelegate {
-    
-    // MARK: - SettingsViewDelegate
-
+extension TapManager: SettingsViewDelegate {
     func playButtonTapped(_ button: CustomButton) {
         updateBallMovement(isPlaying: ballView.tapManagerControls.isPlaying, speed: settingsView.tapManagerControls.speed)
         updateElapsedLabel(duration: settingsView.tapManagerControls.duration)
@@ -206,10 +205,12 @@ extension TapManager: SettingsViewDelegate, BallViewDelegate {
         
         setFirebaseModelIfHost()
     }
-    
-    
-    // MARK: - BallViewDelegate
-    
+}
+
+
+// MARK: - BallViewDelegate
+
+extension TapManager: BallViewDelegate {
     func didStartPlaying(restart: Bool) {
         if restart {
             startTime = currentTime
@@ -231,6 +232,9 @@ extension TapManager: SettingsViewDelegate, BallViewDelegate {
     func didUpdateCurrentImage() {
         setFirebaseModelIfHost()
     }
+    
+    
+    //Helper Functions
     
     @objc private func timerAction() {
         updateElapsedLabel(duration: getRemainingDuration())

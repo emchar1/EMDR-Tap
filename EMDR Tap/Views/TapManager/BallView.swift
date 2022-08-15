@@ -26,11 +26,13 @@ class BallView: UIView, CustomButtonDelegate {
     
     private let ballSize: CGFloat = 80
     private let ballPadding: CGFloat = 50
-    private let ballImages: [UIImage?] = [UIImage(systemName: "circle.fill"),
-                                          UIImage(systemName: "star.fill"),
-                                          UIImage(systemName: "moon.fill"),
-                                          UIImage(systemName: "atom"),
-                                          UIImage(systemName: "face.smiling")]
+    private let ballImages: [UIImage?] = [
+        UIImage(systemName: "circle.fill"),
+        UIImage(systemName: "star.fill"),
+        UIImage(systemName: "moon.fill"),
+        UIImage(systemName: "atom"),
+        UIImage(systemName: "face.smiling")
+    ]
 
     private var direction: BallDirection = .right
     private var timer: Timer?
@@ -140,7 +142,7 @@ class BallView: UIView, CustomButtonDelegate {
         direction = direction == .right ? .left : .right
         
         UIImpactFeedbackGenerator(style: .soft).impactOccurred()
-        AudioPlayer.playSound(filename: "Tap", pan: direction)
+        AudioPlayer.playSound(filename: TapSounds.sounds[tapManagerControls.currentImage], pan: direction)
     }
 }
 

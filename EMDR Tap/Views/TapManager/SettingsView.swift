@@ -32,6 +32,8 @@ class SettingsView: UIView, CustomButtonDelegate {
     private var speedSlider: UISlider!
     private var playButton: CustomButton!
     private var durationControl: UISegmentedControl!
+    private var speedLabel: UILabel!
+    private var currentColor: UIColor!
     
     private var playButtonConstraint: NSLayoutConstraint!
     private var speedSliderConstraint: NSLayoutConstraint!
@@ -62,6 +64,15 @@ class SettingsView: UIView, CustomButtonDelegate {
         layer.cornerRadius = 20
         clipsToBounds = true
         
+        switch DataService.sessionType {
+        case .guest:
+            currentColor = UIColor(named: "guestTint")
+        case .host:
+            currentColor = UIColor(named: "hostTint")
+        default:
+            currentColor = UIColor(named: "localTint")
+        }
+        
         settingsButton = CustomButton(image: UIImage(systemName: "gearshape.fill"))
         settingsButton.imageView?.transform = CGAffineTransform(rotationAngle: .pi)
         settingsButton.delegate = self
@@ -72,30 +83,25 @@ class SettingsView: UIView, CustomButtonDelegate {
         
         speedSlider = UISlider()
         speedSlider.value = SettingsView.getSliderValueForSpeed(tapManagerControls.speed)
-        speedSlider.isContinuous = false
+        speedSlider.isContinuous = true
+        speedSlider.tintColor = currentColor
+        speedSlider.thumbTintColor = currentColor
         speedSlider.addTarget(self, action: #selector(sliderDidChange(_:)), for: .valueChanged)
         speedSlider.translatesAutoresizingMaskIntoConstraints = false
         
         durationControl = UISegmentedControl(items: ["1 min", "5 mins", "∞"])
         durationControl.selectedSegmentIndex = SettingsView.getSelectedSegmentForDuration(tapManagerControls.duration)
+        durationControl.setTitleTextAttributes([.foregroundColor: currentColor ?? UIColor.label], for: .normal)
         durationControl.addTarget(self, action: #selector(segmentedControlDidChange(_:)), for: .valueChanged)
         durationControl.translatesAutoresizingMaskIntoConstraints = false
         
-        switch DataService.sessionType {
-        case .guest:
-            speedSlider.tintColor = UIColor(named: "guestTint")
-            speedSlider.thumbTintColor = UIColor(named: "guestTint")
-            durationControl.setTitleTextAttributes([.foregroundColor: UIColor(named: "guestTint") ?? UIColor.label], for: .normal)
-        case .host:
-            speedSlider.tintColor = UIColor(named: "hostTint")
-            speedSlider.thumbTintColor = UIColor(named: "hostTint")
-            durationControl.setTitleTextAttributes([.foregroundColor: UIColor(named: "hostTint") ?? UIColor.label], for: .normal)
-        default:
-            speedSlider.tintColor = UIColor(named: "localTint")
-            speedSlider.thumbTintColor = UIColor(named: "localTint")
-            durationControl.setTitleTextAttributes([.foregroundColor: UIColor(named: "localTint") ?? UIColor.label], for: .normal)
-        }
-
+        speedLabel = UILabel()
+        speedLabel.text = "Speed: 1"
+        speedLabel.font = .secondo?.withSize(12)
+        speedLabel.textColor = currentColor
+        speedLabel.alpha = 0
+        speedLabel.translatesAutoresizingMaskIntoConstraints = false
+        
         //MUST go last!
         setSpeed()
         setDuration()
@@ -106,6 +112,7 @@ class SettingsView: UIView, CustomButtonDelegate {
         addSubview(playButton)
         addSubview(speedSlider)
         addSubview(durationControl)
+        addSubview(speedLabel)
         
         playButtonConstraint = playButton.leadingAnchor.constraint(equalTo: leadingAnchor)
         speedSliderConstraint = speedSlider.leadingAnchor.constraint(equalTo: leadingAnchor)
@@ -127,6 +134,9 @@ class SettingsView: UIView, CustomButtonDelegate {
             
             durationControl.widthAnchor.constraint(equalToConstant: 4 * dialSize),
             bottomAnchor.constraint(equalTo: durationControl.bottomAnchor, constant: dialPadding),
+            
+            speedLabel.bottomAnchor.constraint(equalTo: speedSlider.topAnchor, constant: -6),
+            speedLabel.centerXAnchor.constraint(equalTo: speedSlider.centerXAnchor)
         ])
     }
     
@@ -171,9 +181,21 @@ class SettingsView: UIView, CustomButtonDelegate {
     }
     
     @objc private func sliderDidChange(_ sender: UISlider) {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        numberFormatter.maximumFractionDigits = 2
+        numberFormatter.minimumFractionDigits = 2
+        
         setSpeed()
         
         UserDefaults.standard.set(sender.value, forKey: "SliderValue")
+        
+        speedLabel.text = "Speed: " + numberFormatter.string(from: NSNumber(value: tapManagerControls.speed))!
+        speedLabel.alpha = 1
+        
+        UIView.animate(withDuration: 0.5, delay: 2.5, options: [], animations: {
+            self.speedLabel.alpha = 0
+        }, completion: nil)
         
         delegate?.speedSliderChanged(sender)
     }

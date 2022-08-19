@@ -190,7 +190,7 @@ class SettingsView: UIView, CustomButtonDelegate {
         
         UserDefaults.standard.set(sender.value, forKey: "SliderValue")
         
-        speedLabel.text = "Speed: " + numberFormatter.string(from: NSNumber(value: tapManagerControls.speed))!
+        speedLabel.text = "Speed: " + numberFormatter.string(from: NSNumber(value: 2 - tapManagerControls.speed))!
         speedLabel.alpha = 1
         
         UIView.animate(withDuration: 0.5, delay: 2.5, options: [], animations: {

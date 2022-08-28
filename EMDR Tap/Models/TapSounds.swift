@@ -15,4 +15,6 @@ struct TapSounds {
         "TapAtom",
         "TapFace"
     ]
+    
+    static let proceedJoin = "ProceedJoin"
 }

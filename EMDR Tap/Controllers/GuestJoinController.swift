@@ -78,9 +78,12 @@ extension GuestJoinController: LoginViewDelegate {
             guard let snapshot = snapshot else { return }
             guard snapshot.exists else {
                 self.loginView.updateStatus("Invalid Session ID")
+                Haptics.playInvalidSessionID()
                 return
             }
 
+            AudioPlayer.playSound(filename: TapSounds.proceedJoin)
+            
             let vc = EMDRViewController()
             self.present(vc, animated: true)
         }

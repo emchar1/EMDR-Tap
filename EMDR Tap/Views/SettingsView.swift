@@ -236,10 +236,13 @@ extension SettingsView {
                     durationControl.alpha = 0
                     
                     layoutIfNeeded()
-                }, completion: nil)
+                }, completion: { _ in
+                    Haptics.playSettingsExpand()
+                })
             }
             else {
                 updateConstraints(shouldShow: true)
+                Haptics.playSettingsExpand()
 
                 UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: { [unowned self] in
                     backgroundColor = UIColor(named: "settingsBG")?.withAlphaComponent(0.2)

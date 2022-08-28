@@ -29,6 +29,7 @@
 		EA10BFE7288BA5190062A5FF /* TapManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA10BFE6288BA5190062A5FF /* TapManager.swift */; };
 		EA10BFE9288C750D0062A5FF /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA10BFE8288C750D0062A5FF /* SettingsView.swift */; };
 		EA10BFEB288C87C30062A5FF /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA10BFEA288C87C30062A5FF /* CustomButton.swift */; };
+		EA20547F28BAA0480032A2AE /* Haptics.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA20547E28BAA0480032A2AE /* Haptics.swift */; };
 		EA72C7D228A94EC000E48AED /* Extension+UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA72C7D128A94EC000E48AED /* Extension+UIFont.swift */; };
 		EA72C7D428AAF73000E48AED /* TapCircle.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EA72C7D328AAF72F00E48AED /* TapCircle.mp3 */; };
 		EA72C7D728AAF75C00E48AED /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA72C7D628AAF75C00E48AED /* AudioPlayer.swift */; };
@@ -38,6 +39,7 @@
 		EA72C7E028AAFDFE00E48AED /* TapMoon.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EA72C7DD28AAFDFE00E48AED /* TapMoon.mp3 */; };
 		EA72C7E128AAFDFE00E48AED /* TapStar.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EA72C7DE28AAFDFE00E48AED /* TapStar.mp3 */; };
 		EA72C7E328AAFE2C00E48AED /* TapFace.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EA72C7E228AAFE2C00E48AED /* TapFace.mp3 */; };
+		EA752B7728BBC9D70095D46A /* ProceedJoin.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EA752B7628BBC9D70095D46A /* ProceedJoin.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,6 +69,7 @@
 		EA10BFE6288BA5190062A5FF /* TapManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapManager.swift; sourceTree = "<group>"; };
 		EA10BFE8288C750D0062A5FF /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		EA10BFEA288C87C30062A5FF /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		EA20547E28BAA0480032A2AE /* Haptics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Haptics.swift; sourceTree = "<group>"; };
 		EA72C7D128A94EC000E48AED /* Extension+UIFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIFont.swift"; sourceTree = "<group>"; };
 		EA72C7D328AAF72F00E48AED /* TapCircle.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TapCircle.mp3; sourceTree = "<group>"; };
 		EA72C7D628AAF75C00E48AED /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
@@ -76,6 +79,7 @@
 		EA72C7DD28AAFDFE00E48AED /* TapMoon.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TapMoon.mp3; sourceTree = "<group>"; };
 		EA72C7DE28AAFDFE00E48AED /* TapStar.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TapStar.mp3; sourceTree = "<group>"; };
 		EA72C7E228AAFE2C00E48AED /* TapFace.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = TapFace.mp3; path = ../../../../Tutorials/Devslopes/Academy/Week4/CoolCalc/Assets/CoolCalcSounds/TapFace.mp3; sourceTree = "<group>"; };
+		EA752B7628BBC9D70095D46A /* ProceedJoin.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ProceedJoin.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +117,7 @@
 				EA00533F28A62FD100A98258 /* Extension+UITextField.swift */,
 				EA72C7D128A94EC000E48AED /* Extension+UIFont.swift */,
 				EA72C7D628AAF75C00E48AED /* AudioPlayer.swift */,
+				EA20547E28BAA0480032A2AE /* Haptics.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -123,7 +128,6 @@
 				EA00534228A6C8DE00A98258 /* TapManagerControls.swift */,
 				EA10BFE6288BA5190062A5FF /* TapManager.swift */,
 				EA10BFE4288BA4510062A5FF /* BallView.swift */,
-				EA10BFE8288C750D0062A5FF /* SettingsView.swift */,
 			);
 			path = TapManager;
 			sourceTree = "<group>";
@@ -199,6 +203,7 @@
 			children = (
 				EA00534428A72AA900A98258 /* TapManager */,
 				EA00534528A72ABA00A98258 /* Buttons */,
+				EA10BFE8288C750D0062A5FF /* SettingsView.swift */,
 				EA00534A28A8481100A98258 /* Login */,
 			);
 			path = Views;
@@ -223,6 +228,7 @@
 				EA72C7DD28AAFDFE00E48AED /* TapMoon.mp3 */,
 				EA72C7DC28AAFDFE00E48AED /* TapAtom.mp3 */,
 				EA72C7E228AAFE2C00E48AED /* TapFace.mp3 */,
+				EA752B7628BBC9D70095D46A /* ProceedJoin.mp3 */,
 			);
 			path = Sounds;
 			sourceTree = "<group>";
@@ -289,6 +295,7 @@
 			files = (
 				EA72C7E328AAFE2C00E48AED /* TapFace.mp3 in Resources */,
 				EA72C7E028AAFDFE00E48AED /* TapMoon.mp3 in Resources */,
+				EA752B7728BBC9D70095D46A /* ProceedJoin.mp3 in Resources */,
 				EA72C7DF28AAFDFE00E48AED /* TapAtom.mp3 in Resources */,
 				EA10BFD9288BA2D80062A5FF /* LaunchScreen.storyboard in Resources */,
 				EA72C7D928AAF92E00E48AED /* NoSound.mp3 in Resources */,
@@ -350,6 +357,7 @@
 			files = (
 				EA00534C28A8482800A98258 /* DigitLabel.swift in Sources */,
 				EA00533828A4702500A98258 /* SessionType.swift in Sources */,
+				EA20547F28BAA0480032A2AE /* Haptics.swift in Sources */,
 				EA00534928A840DA00A98258 /* DigitButton.swift in Sources */,
 				EA00534028A62FD100A98258 /* Extension+UITextField.swift in Sources */,
 				EA10BFD1288BA2D60062A5FF /* EMDRViewController.swift in Sources */,

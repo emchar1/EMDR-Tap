@@ -28,6 +28,7 @@ class MainMenuController: UIViewController {
         
         setupViews()
         layoutViews()
+        setupHaptics()
     }
     
     private func setupViews() {
@@ -82,6 +83,13 @@ class MainMenuController: UIViewController {
             vStack.arrangedSubviews[0].heightAnchor.constraint(equalToConstant: 60),
             
         ])
+    }
+    
+    private func setupHaptics() {
+        AudioPlayer.playSound(filename: "NoSound")
+
+        Haptics.checkForHaptics()
+        Haptics.configureEngine()
     }
 }
 

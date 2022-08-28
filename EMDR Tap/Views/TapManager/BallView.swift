@@ -141,7 +141,7 @@ class BallView: UIView, CustomButtonDelegate {
 
         direction = direction == .right ? .left : .right
         
-        UIImpactFeedbackGenerator(style: .soft).impactOccurred()
+        Haptics.playBounce(tapManagerControls.currentImage)
         AudioPlayer.playSound(filename: TapSounds.sounds[tapManagerControls.currentImage], pan: direction)
     }
 }

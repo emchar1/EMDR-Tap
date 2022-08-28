@@ -87,7 +87,7 @@ class LoginView: UIView {
         button7 = DigitButton("7")
         button8 = DigitButton("8")
         button9 = DigitButton("9")
-        buttonBackspace = DigitButton("←")
+        buttonBackspace = DigitButton("←", isDeleteButton: true)
         
         button0.delegate = self
         button1.delegate = self

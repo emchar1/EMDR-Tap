@@ -56,6 +56,8 @@ class MenuButton: UIButton {
     // MARK: - Helper Functions
     
     @objc private func buttonTouchDown(_ sender: UIButton) {
+        Haptics.playButtonTap()
+        
         UIView.animate(withDuration: 0.1, delay: 0, options: [], animations: {
             self.transform = CGAffineTransform(translationX: self.buttonDepth, y: self.buttonDepth)
             self.layer.shadowOpacity = 0

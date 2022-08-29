@@ -58,7 +58,7 @@ class CustomButton: UIButton {
     @objc private func buttonTouchDown(_ sender: CustomButton) {
         guard shouldAnimatePress else { return }
         
-        Haptics.playButtonTap()
+        Haptics.playCustomButtonTap()
         
         UIView.animate(withDuration: 0.1, animations: {
             self.transform = CGAffineTransform(translationX: self.buttonDepth, y: self.buttonDepth)

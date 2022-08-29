@@ -57,7 +57,7 @@ class DigitButton: UIButton {
     // MARK: - Helper Functions
     
     @objc private func buttonTouchDown(_ sender: DigitButton) {
-        Haptics.playButtonTap()
+        Haptics.playCustomButtonTap()
         AudioPlayer.playSound(filename: TapSounds.sounds[isDeleteButton ? 0 : 2])
         
         UIView.animate(withDuration: 0.1, delay: 0, options: [], animations: {

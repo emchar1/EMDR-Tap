@@ -58,10 +58,19 @@ class Haptics {
     
     // MARK: - Haptic Patterns
     
-    static func playButtonTap() {
+    static func playMenuButtonTap() {
         let event = CHHapticEvent(eventType: .hapticTransient,
                                   parameters: [CHHapticEventParameter(parameterID: .hapticIntensity, value: 0.9),
                                                CHHapticEventParameter(parameterID: .hapticSharpness, value: 0.2)],
+                                  relativeTime: 0)
+        
+        playHapticPattern(events: [event])
+    }
+    
+    static func playCustomButtonTap() {
+        let event = CHHapticEvent(eventType: .hapticTransient,
+                                  parameters: [CHHapticEventParameter(parameterID: .hapticIntensity, value: 0.6),
+                                               CHHapticEventParameter(parameterID: .hapticSharpness, value: 0.4)],
                                   relativeTime: 0)
         
         playHapticPattern(events: [event])
@@ -122,7 +131,6 @@ class Haptics {
         }
         
         for i in 0..<loop {
-            print(i)
             event = CHHapticEvent(eventType: .hapticTransient,
                                   parameters: [CHHapticEventParameter(parameterID: .hapticIntensity, value: intensity),
                                                CHHapticEventParameter(parameterID: .hapticSharpness, value: sharpness)],
